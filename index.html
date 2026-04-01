@@ -80,7 +80,7 @@ header {
   border-radius: 100px;
 }
 
-.main { max-width: 720px; margin: 0 auto; padding: 36px 24px 60px; width: 100%; }
+.main { max-width: 1100px; margin: 0 auto; padding: 36px 24px 60px; width: 100%; }
 
 /* ── STEP 1: PASTE ── */
 .step-card {
@@ -655,6 +655,91 @@ textarea::placeholder { color: var(--ink3); }
   color: var(--ink3);
   margin-top: 2px;
 }
+.cot-ponto-grid {
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+/* ── TABELA CTRC ── */
+.ctrc-table {
+  width:100%; border-collapse:collapse; table-layout:fixed;
+}
+.ctrc-table th {
+  padding:11px 14px; text-align:left; font-size:10px; font-weight:700;
+  text-transform:uppercase; letter-spacing:.06em; color:var(--ink3);
+  background:#f8f9fa; border-bottom:2px solid var(--border);
+  white-space:nowrap; overflow:hidden;
+}
+.ctrc-table td {
+  padding:12px 14px; border-bottom:1px solid #f0f0f0;
+  vertical-align:middle; overflow:hidden; font-size:12px; line-height:1.6;
+}
+.ctrc-table .cte-row:hover td { background:#f8faff; }
+/* Colunas CTRC */
+.cc-num   { width:7%;  font-weight:700; color:var(--blue); }
+.cc-data  { width:7%;  font-size:10px;  color:var(--ink3); white-space:nowrap; }
+.cc-ag    { width:11%; font-size:11px; }
+.cc-prod  { width:10%; }
+.cc-rota  { width:19%; font-size:11px; line-height:1.6; }
+.cc-eixo  { width:5%;  text-align:center; }
+.cc-km    { width:6%;  text-align:right; white-space:nowrap; }
+.cc-peso  { width:8%;  text-align:right; white-space:nowrap; }
+.cc-emit  { width:10%; text-align:right; white-space:nowrap; font-family:'JetBrains Mono',monospace; }
+.cc-antt  { width:10%; text-align:right; white-space:nowrap; font-family:'JetBrains Mono',monospace; color:var(--blue); }
+.cc-diff  { width:8%;  text-align:right; white-space:nowrap; }
+.cc-st    { width:9%;  text-align:center; }
+/* Faixa do embarque */
+.emb-faixa {
+  display:flex; align-items:center; gap:12px; flex-wrap:wrap;
+  padding:12px 16px; font-size:12px; border-top:2px solid currentColor;
+}
+.emb-faixa-num   { font-weight:800; font-size:14px; }
+.emb-faixa-info  { font-size:11px; color:var(--ink3); }
+.emb-faixa-rota  { font-size:11px; font-weight:600; flex:1; }
+.emb-faixa-vals  { display:flex; gap:20px; margin-left:auto; font-size:11px; font-family:'JetBrains Mono',monospace; }
+.emb-faixa-val   { display:flex; flex-direction:column; align-items:flex-end; gap:2px; }
+.emb-faixa-val small { font-size:9px; color:var(--ink3); font-family:inherit; text-transform:uppercase; }
+/* Badges */
+.b-ok, .b-err, .b-warn, .b-sem, .b-seq,
+.badge-ok, .badge-err, .badge-warn, .badge-neutral, .badge-rota-seq {
+  display:inline-block; padding:4px 10px; border-radius:20px;
+  font-size:10px; font-weight:700; white-space:nowrap;
+}
+.b-ok,   .badge-ok      { background:#dcfce7; color:#15803d; }
+.b-err,  .badge-err     { background:#fee2e2; color:#991b1b; }
+.b-warn, .badge-warn    { background:#fef3c7; color:#92400e; }
+.b-sem,  .badge-neutral { background:#f3f4f6; color:#6b7280; }
+.b-seq,  .badge-rota-seq{ background:#ede9fe; color:#6d28d9; font-size:9px; }
+.dv-ok  { color:#16a34a; font-weight:700; }
+.dv-err { color:#dc2626; font-weight:700; }
+.dv-pct { display:block; font-size:9px; color:var(--ink3); font-weight:400; }
+
+/* Tabela XML específica — mais espaço e legível */
+.xml-table {
+  width:100%; border-collapse:collapse;
+}
+.xml-table th {
+  padding:12px 16px; font-size:10px; font-weight:700;
+  text-transform:uppercase; letter-spacing:.06em; color:#3b5bdb;
+  background:#eef2ff; border-bottom:2px solid #c5d0fa;
+  white-space:nowrap; text-align:left;
+}
+.xml-table td {
+  padding:14px 16px; border-bottom:1px solid #eef2ff;
+  vertical-align:middle; font-size:12px; line-height:1.7;
+}
+.xml-table tr:hover td { background:#f5f8ff; }
+.xml-cte  { font-weight:700; color:var(--blue); font-size:12px; min-width:90px; }
+.xml-mono { font-family:'JetBrains Mono',monospace; font-size:12px; white-space:nowrap; }
+.xml-r    { text-align:right; white-space:nowrap; }
+.xml-c    { text-align:center; white-space:nowrap; }
+/* Larguras mínimas para colunas numéricas não cortarem decimais */
+.xml-table th:nth-child(9)  { min-width:70px; }   /* peso */
+.xml-table th:nth-child(10) { min-width:130px; }  /* tar R$/t */
+.xml-table th:nth-child(11) { min-width:120px; }  /* frete total */
+.xml-table th:nth-child(12) { min-width:120px; }  /* piso ANTT */
+.xml-table th:nth-child(13) { min-width:120px; }  /* diferença */
+
 .cotacao-formula {
   margin-top: 12px;
   background: var(--bg);
@@ -773,6 +858,32 @@ textarea::placeholder { color: var(--ink3); }
     grid-template-columns: 1fr !important;
   }
 
+  /* Pontos de rota (origem, paradas, destino) — coluna única */
+  #cot-paradas-wrap [id^="parada-row-"] > div,
+  #cot-destino-row > div,
+  .cot-ponto-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Linha de cada ponto de rota */
+  #cot-paradas-wrap [id^="parada-row-"],
+  #cot-destino-row {
+    flex-wrap: wrap;
+  }
+  #cot-paradas-wrap [id^="parada-row-"] > div,
+  #cot-destino-row > div {
+    flex: 1 1 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  #cot-paradas-wrap [id^="parada-row-"] input,
+  #cot-destino-row input,
+  #cot-orig, #cot-orig-end, #cot-dest, #cot-dest-end {
+    width: 100% !important;
+    box-sizing: border-box;
+  }
+
   /* Botões de ação da cotação — empilhados */
   #cot-tabela-wrap > div:first-child {
     flex-direction: column;
@@ -793,6 +904,33 @@ textarea::placeholder { color: var(--ink3); }
     border-radius: 0;
   }
   .mapa-modal-header { padding: 12px 14px; }
+
+  /* Modal roteirizador — tela cheia no mobile */
+  #rot-overlay .mapa-modal {
+    width: 100vw !important;
+    height: 100vh !important;
+    max-width: 100vw !important;
+    border-radius: 0;
+    flex-direction: column;
+  }
+  /* No mobile, painel lateral vai para baixo do mapa */
+  #rot-overlay .mapa-modal > div:last-child {
+    flex-direction: column !important;
+  }
+  #rot-mapa-leaflet {
+    min-height: 52vh !important;
+    flex: none !important;
+  }
+  #rot-overlay .mapa-modal > div:last-child > div:last-child {
+    width: 100% !important;
+    border-left: none !important;
+    border-top: 1px solid var(--border);
+    max-height: 38vh;
+    overflow-y: auto;
+  }
+  #rot-pontos-lista {
+    max-height: 18vh !important;
+  }
 
   /* Veredicto */
   .v-numbers { grid-template-columns: 1fr 1fr; }
@@ -817,19 +955,57 @@ textarea::placeholder { color: var(--ink3); }
 </head>
 <body>
 
-<!-- MODAL MAPA -->
-<div class="mapa-overlay" id="mapa-overlay" onclick="fecharMapa(event)">
-  <div class="mapa-modal">
-    <div class="mapa-modal-header">
-      <div>
-        <div class="mapa-modal-title">🗺️ Rota — OpenStreetMap</div>
-        <div class="mapa-modal-sub" id="mapa-modal-sub">Calculando rota...</div>
+
+<!-- MODAL ROTEIRIZADOR UNIFICADO -->
+<div class="mapa-overlay" id="rot-overlay" onclick="rotFecharOverlay(event)">
+  <div class="mapa-modal" id="rot-modal-box" style="display:flex;flex-direction:column;max-width:980px;width:96vw;height:90vh">
+    <!-- Header -->
+    <div class="mapa-modal-header" style="flex-shrink:0">
+      <div style="flex:1;min-width:0">
+        <div class="mapa-modal-title" id="rot-titulo">🗺️ Roteirizador</div>
+        <div class="mapa-modal-sub" id="rot-instrucao">Clique no mapa ou busque uma cidade para adicionar pontos</div>
       </div>
-      <button class="btn-fechar-mapa" onclick="fecharMapaForce()">✕</button>
+      <button class="btn-fechar-mapa" onclick="rotFechar()">✕</button>
     </div>
-    <div id="mapa-leaflet"></div>
+    <!-- Barra de busca -->
+    <div style="padding:10px 14px;border-bottom:1px solid var(--border);background:var(--bg);flex-shrink:0">
+      <div style="display:flex;gap:8px;align-items:center;position:relative">
+        <div style="flex:1;position:relative">
+          <input type="text" id="rot-busca" placeholder="Buscar cidade/UF ou cole coordenadas (-28.26,-52.40)..."
+            style="width:100%;padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;background:var(--white);box-sizing:border-box"
+            onkeydown="rotBuscaKeydown(event)" oninput="rotBuscaInput(this.value)" autocomplete="off">
+          <div id="rot-sugestoes" style="display:none;position:absolute;top:100%;left:0;right:0;background:var(--white);border:1px solid var(--border);border-top:none;border-radius:0 0 8px 8px;z-index:9999;box-shadow:0 4px 12px rgba(0,0,0,.15);max-height:220px;overflow-y:auto"></div>
+        </div>
+        <button onclick="rotBuscar()" style="padding:8px 16px;background:var(--blue);color:white;border:none;border-radius:8px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap;flex-shrink:0">
+          + Adicionar
+        </button>
+      </div>
+      <div id="rot-busca-status" style="font-size:11px;color:var(--ink3);margin-top:4px;min-height:16px"></div>
+    </div>
+    <!-- Corpo: mapa + painel -->
+    <div style="display:flex;flex:1;overflow:hidden" id="rot-corpo">
+      <div id="rot-mapa-leaflet" style="flex:1;min-height:0"></div>
+      <!-- Painel lateral -->
+      <div style="width:270px;flex-shrink:0;border-left:1px solid var(--border);display:flex;flex-direction:column;background:var(--surface)" id="rot-painel">
+        <div style="padding:10px 12px;border-bottom:1px solid var(--border);font-size:11px;font-weight:700;text-transform:uppercase;color:var(--ink3);letter-spacing:.05em">
+          Pontos da rota
+        </div>
+        <div id="rot-pontos-lista" style="flex:1;overflow-y:auto;padding:6px"></div>
+        <div style="padding:12px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:8px;flex-shrink:0">
+          <button onclick="rotLimpar()" style="padding:8px;background:var(--bg);border:1px solid var(--border);border-radius:8px;font-family:inherit;font-size:13px;font-weight:600;cursor:pointer;color:var(--ink2)">
+            🗑 Limpar tudo
+          </button>
+          <button onclick="rotConfirmar()" id="rot-btn-confirmar" disabled
+            style="padding:10px;background:var(--blue);color:white;border:none;border-radius:8px;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;opacity:.5">
+            ✓ Confirmar e calcular
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+<!-- modal mapa antigo removido —  roteirizador unificado usado no lugar -->
 
 <header>
   <div class="logo">
@@ -845,7 +1021,8 @@ textarea::placeholder { color: var(--ink3); }
   <div class="main-tabs">
     <button class="main-tab" onclick="trocarMainTab(event,'pane-espelho')">📋 Espelho do lote</button>
     <button class="main-tab active" onclick="trocarMainTab(event,'pane-cotacao')">🧮 Cotação de Frete</button>
-    <button class="main-tab" onclick="trocarMainTab(event,'pane-planilha')">📊 Planilha XLS</button>
+    <button class="main-tab" onclick="trocarMainTab(event,'pane-ctrc')">📑 Rel. CTRC</button>
+    <button class="main-tab" onclick="trocarMainTab(event,'pane-xml')">📄 XML CT-e</button>
   </div>
 
   <!-- PANE 1: ESPELHO -->
@@ -890,40 +1067,62 @@ textarea::placeholder { color: var(--ink3); }
         </div>
       </div>
 
-      <!-- Linha 2: KM manual OU origem/destino -->
+      <!-- Linha 2: KM manual OU rota com paradas -->
       <div style="background:var(--bg);border-radius:10px;padding:16px;margin-bottom:16px">
-        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink3);margin-bottom:12px">
-          Distância — preencha o KM <b>ou</b> informe origem/destino
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:14px">
+          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink3)">
+            Distância — KM manual <b>ou</b> rota com paradas
+          </div>
+          <button onclick="abrirRoteirizador()" style="
+            padding:7px 14px;background:var(--green);color:white;border:none;border-radius:8px;
+            font-family:'Figtree',sans-serif;font-size:12px;font-weight:700;cursor:pointer;
+            display:flex;align-items:center;gap:5px
+          ">🗺️ Selecionar no mapa</button>
         </div>
-        <div style="display:grid;grid-template-columns:120px 1fr 1fr;gap:12px;align-items:end" id="cot-rota-fields">
-          <div class="cotacao-field">
-            <label>KM <span style="font-weight:400;text-transform:none">(opcional)</span></label>
-            <input type="number" id="cot-km" placeholder="ex: 350" min="1" step="1">
-          </div>
-          <div class="cotacao-field">
-            <label>Origem — Cidade/UF ou coordenadas</label>
-            <input type="text" id="cot-orig" placeholder="ex: PASSO FUNDO/RS ou -28.2622,-52.4083"
-              style="text-transform:uppercase">
-          </div>
-          <div class="cotacao-field">
-            <label>Destino — Cidade/UF ou coordenadas</label>
-            <input type="text" id="cot-dest" placeholder="ex: SAO PAULO/SP ou -23.5489,-46.6388"
-              style="text-transform:uppercase">
-          </div>
+
+        <!-- KM manual -->
+        <div class="cotacao-field" style="margin-bottom:14px">
+          <label>KM total <span style="font-weight:400;text-transform:none">(preencha aqui OU use os campos abaixo)</span></label>
+          <input type="number" id="cot-km" placeholder="ex: 350" min="1" step="1" style="max-width:160px">
         </div>
-        <!-- Endereços opcionais -->
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px">
-          <div class="cotacao-field">
-            <label>Endereço origem <span style="font-weight:400;text-transform:none">(opcional)</span></label>
-            <input type="text" id="cot-orig-end" placeholder="ex: Rua XV de Novembro, 123"
-              style="text-transform:uppercase">
-          </div>
-          <div class="cotacao-field">
-            <label>Endereço destino <span style="font-weight:400;text-transform:none">(opcional)</span></label>
-            <input type="text" id="cot-dest-end" placeholder="ex: Av. Brasil, 456"
-              style="text-transform:uppercase">
+
+        <!-- Ponto de ORIGEM -->
+        <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:8px">
+          <div style="width:28px;height:28px;background:#2563eb;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:12px;flex-shrink:0;margin-top:6px">A</div>
+          <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:8px;min-width:0" class="cot-ponto-grid">
+            <div style="position:relative">
+              <input type="text" id="cot-orig" placeholder="Origem — CIDADE/UF ou coordenadas" autocomplete="off"
+                style="text-transform:uppercase;padding:8px 10px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;background:var(--white);min-width:0;width:100%;box-sizing:border-box"
+                oninput="cotSugInput('cot-orig','cot-orig-sug',this.value)" onkeydown="cotSugKeydown(event,'cot-orig','cot-orig-sug')">
+              <div id="cot-orig-sug" style="display:none;position:absolute;top:100%;left:0;right:0;background:var(--white);border:1px solid var(--border);border-top:none;border-radius:0 0 8px 8px;z-index:500;box-shadow:0 4px 12px rgba(0,0,0,.12);max-height:200px;overflow-y:auto"></div>
+            </div>
+            <input type="text" id="cot-orig-end" placeholder="Endereço (opcional)" style="text-transform:uppercase;padding:8px 10px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;background:var(--white);min-width:0;width:100%;box-sizing:border-box">
           </div>
         </div>
+
+        <!-- Paradas intermediárias (dinâmico) -->
+        <div id="cot-paradas-wrap"></div>
+
+        <!-- Ponto de DESTINO -->
+        <div style="display:flex;align-items:flex-start;gap:8px;margin-bottom:12px" id="cot-destino-row">
+          <div id="cot-dest-badge" style="width:28px;height:28px;background:#dc2626;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:12px;flex-shrink:0;margin-top:6px">B</div>
+          <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:8px;min-width:0" class="cot-ponto-grid">
+            <div style="position:relative">
+              <input type="text" id="cot-dest" placeholder="Destino — CIDADE/UF ou coordenadas" autocomplete="off"
+                style="text-transform:uppercase;padding:8px 10px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;background:var(--white);min-width:0;width:100%;box-sizing:border-box"
+                oninput="cotSugInput('cot-dest','cot-dest-sug',this.value)" onkeydown="cotSugKeydown(event,'cot-dest','cot-dest-sug')">
+              <div id="cot-dest-sug" style="display:none;position:absolute;top:100%;left:0;right:0;background:var(--white);border:1px solid var(--border);border-top:none;border-radius:0 0 8px 8px;z-index:500;box-shadow:0 4px 12px rgba(0,0,0,.12);max-height:200px;overflow-y:auto"></div>
+            </div>
+            <input type="text" id="cot-dest-end" placeholder="Endereço (opcional)" style="text-transform:uppercase;padding:8px 10px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;background:var(--white);min-width:0;width:100%;box-sizing:border-box">
+          </div>
+        </div>
+
+        <!-- Botão adicionar parada -->
+        <button onclick="adicionarParada()" style="
+          padding:7px 14px;background:var(--white);border:1px dashed var(--blue);border-radius:8px;
+          font-family:'Figtree',sans-serif;font-size:12px;font-weight:600;cursor:pointer;color:var(--blue);
+          display:flex;align-items:center;gap:5px
+        ">+ Adicionar parada intermediária</button>
       </div>
 
       <button class="btn-cotar" id="btn-cotar" onclick="calcularCotacao()">
@@ -948,25 +1147,108 @@ textarea::placeholder { color: var(--ink3); }
     </div>
   </div>
 
-  <!-- PANE 3: PLANILHA -->
-  <div id="pane-planilha" class="main-pane">
+  <!-- PANE 4: REL. CTRC -->
+  <div id="pane-ctrc" class="main-pane">
     <div class="step-card">
-      <div class="step-title">
-        <span class="step-num">1</span>
-        Selecione o relatório de lotes (.xls ou .xlsx)
-      </div>
-      <div class="upload-area" id="uploadArea" onclick="document.getElementById('fileInput').click()"
+      <div class="step-title"><span class="step-num">1</span>Selecione o relatório CTRC detalhado (.xls / .xlsx)</div>
+      <div class="upload-area" id="ctrcUploadArea"
+           onclick="document.getElementById('ctrcFileInput').click()"
            ondragover="event.preventDefault();this.classList.add('dragover')"
            ondragleave="this.classList.remove('dragover')"
-           ondrop="onDrop(event)">
+           ondrop="ctrcOnDrop(event)">
         <div class="upload-icon">📂</div>
-        <div class="upload-label">Clique para selecionar ou arraste o arquivo aqui</div>
-        <div class="upload-sub">Formato: rel_lote_carregamento_detalhado_*.xls / .xlsx</div>
+        <div class="upload-label">Clique ou arraste o arquivo aqui</div>
+        <div class="upload-sub">Formato: rel_ctrc_detalhado_*.xls / .xlsx</div>
       </div>
-      <input type="file" id="fileInput" accept=".xls,.xlsx" style="display:none" onchange="onFileSelect(event)">
+      <input type="file" id="ctrcFileInput" accept=".xls,.xlsx" style="display:none" onchange="ctrcOnFileSelect(event)">
+      <div style="display:flex;gap:12px;align-items:flex-end;flex-wrap:wrap;margin-top:14px">
+        <div class="cotacao-field" style="flex:1;min-width:180px">
+          <label>Filtrar por tipo de carga</label>
+          <select id="ctrc-tipo" onchange="ctrcRenderTabela()">
+            <option value="todos">Todos os tipos</option>
+            <option value="geral">Carga Geral</option>
+            <option value="granelSolido">Granel Sólido</option>
+            <option value="granelLiquido">Granel Líquido</option>
+            <option value="frigorificada">Frigorificada</option>
+            <option value="conteinerizada">Conteinerizada</option>
+          </select>
+        </div>
+        <div class="cotacao-field" style="flex:1;min-width:180px">
+          <label>Filtrar por agência</label>
+          <select id="ctrc-agencia-filter" onchange="ctrcRenderTabela()">
+            <option value="">Todas as agências</option>
+          </select>
+        </div>
+        <div class="cotacao-field" style="flex:1;min-width:160px">
+          <label>Filtrar por status</label>
+          <select id="ctrc-status-filter" onchange="ctrcRenderTabela()">
+            <option value="">Todos</option>
+            <option value="ok">✓ Acima do piso</option>
+            <option value="abaixo">✗ Abaixo do piso</option>
+            <option value="semkm">⚠ Sem KM</option>
+          </select>
+        </div>
+        <button class="btn-analisar" id="ctrcBtnGeocode" style="display:none;padding:10px 20px;font-size:13px;background:var(--green)" onclick="ctrcCalcularKmFaltante()">
+          📍 Calcular KM faltante
+        </button>
+        <button class="btn-analisar" id="ctrcBtnExportar" style="display:none;padding:10px 20px;font-size:13px" onclick="ctrcExportarExcel()">
+          ⬇ Exportar Excel
+        </button>
+      </div>
     </div>
-    <div id="resultado-xls"></div>
+    <div id="ctrc-summary" style="display:none;margin-bottom:16px"></div>
+    <div id="ctrc-resultado"></div>
   </div>
+
+  <!-- PANE XML CT-e -->
+  <div id="pane-xml" class="main-pane">
+
+    <!-- STEP 1: Upload XMLs -->
+    <div class="step-card" style="margin-bottom:12px">
+      <div class="step-title"><span class="step-num">1</span>Carregar XMLs do CT-e</div>
+      <div class="upload-area" id="xml-upload-area"
+           onclick="document.getElementById('xml-file-input').click()"
+           ondragover="event.preventDefault();this.classList.add('dragover')"
+           ondragleave="this.classList.remove('dragover')"
+           ondrop="xmlOnDrop(event)">
+        <div class="upload-icon">📄</div>
+        <div class="upload-label">Clique ou arraste um ou mais XMLs aqui</div>
+        <div class="upload-sub">CT-e padrão SEFAZ · procXMLEnviCTe, CTe, cteProc</div>
+      </div>
+      <input type="file" id="xml-file-input" accept=".xml" multiple style="display:none"
+             onchange="xmlOnFileSelect(event)">
+      <div style="margin-top:10px">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink3);margin-bottom:6px">Ou cole o XML</div>
+        <textarea id="xml-texto" placeholder="Cole o conteúdo do XML do CT-e aqui..."
+          style="min-height:80px;max-height:160px;font-size:11px"></textarea>
+        <button class="btn-analisar" style="margin-top:8px" onclick="xmlProcessarTexto()">Validar XML colado</button>
+      </div>
+    </div>
+
+    <!-- STEP 2: Cruzar com relatório (opcional) -->
+    <div class="step-card" style="margin-bottom:12px" id="xml-xls-card">
+      <div class="step-title"><span class="step-num">2</span>Cruzar com relatório CTRC <span style="font-weight:400;font-size:13px;color:var(--ink3)">(opcional)</span></div>
+      <p style="font-size:13px;color:var(--ink2);margin-bottom:12px;line-height:1.6">
+        Carregue o relatório CTRC detalhado (.xls) para cruzar com os XMLs pelo número do CT-e.
+        Os dados do XML preenchem automaticamente KM, eixos, peso e produto nos registros do relatório.
+      </p>
+      <div class="upload-area" id="xml-xls-area" style="padding:20px"
+           onclick="document.getElementById('xml-xls-input').click()"
+           ondragover="event.preventDefault();this.classList.add('dragover')"
+           ondragleave="this.classList.remove('dragover')"
+           ondrop="xmlXlsOnDrop(event)">
+        <div class="upload-icon" style="font-size:28px">📊</div>
+        <div class="upload-label">Clique ou arraste o relatório XLS aqui</div>
+        <div class="upload-sub" id="xml-xls-status">rel_ctrc_detalhado_*.xls</div>
+      </div>
+      <input type="file" id="xml-xls-input" accept=".xls,.xlsx" style="display:none"
+             onchange="xmlXlsOnFileSelect(event)">
+    </div>
+
+    <!-- Resultados -->
+    <div id="xml-resultado"></div>
+  </div>
+
 
 </div>
 
@@ -997,13 +1279,37 @@ const VEICULO_EIXOS = [
   { re:/vuc/i,             eixo:2, label:'VUC' },
 ];
 
-function classifProduto(nome) {
-  if (!nome) return { tipo:'geral', label:'Carga Geral' };
-  const n = nome.toUpperCase();
-  if (/MILHO|SOJA|ARROZ|TRIGO|FARELO|CALCARIO|CALCÁRIO|AREIA|PEDRISCO/.test(n)) return { tipo:'granelSolido',  label:'Granel Sólido' };
-  if (/OLEO|ÓLEO|ACIDO|ÁCIDO|ALCOOL|ÁLCOOL|GLICERINA/.test(n))                  return { tipo:'granelLiquido', label:'Granel Líquido' };
-  if (/FRIG|CONGELADO|RESFRI|FRANGO|CARNE/.test(n))                              return { tipo:'frigorificada',  label:'Frigorificada' };
-  if (/FERTIL|FERTILIZANTE|RACAO|RAÇÃO|FARINHA|ADUBO|CIMENTO/.test(n))           return { tipo:'neogranel',     label:'Neogranel' };
+// Classificação de carga por produto e unidade
+// Regras definidas pela Sana:
+//  - Carga Geral: tudo que se quantifica (sacos, bags, caixas, pallets, máquinas, ração, fertilizante, etc.)
+//  - Granel Sólido: soja, milho, arroz, trigo e derivados diretos (farelo, etc.) + calcário, areia
+//  - Granel Líquido: óleos, ácidos, álcool, glicerina
+//  - Frigorificada: frango, carne, congelados
+//  - Neogranel: cimento a granel, farinha a granel (sem embalagem)
+
+const UNIDADES_EMBALADO     = /^(SACOS?|BAG|BIG.?BAG|CAIXA|CAIXAS?|FARDO|FARDOS?|FEIXE|PALLET|PALLETS?|TAMBOR|TAMBORES?|UNIDADE|UNIDADES?|VOLUME|VOLUMES?|DUZIA|DUZIAS?|PEÇA|PECAS?)$/;
+const UNIDADES_GRANEL_SOLIDO = /^(GRANEL|TONELADA|TONELADAS?)$/;
+const UNIDADES_GRANEL_LIQUIDO = /^(LITRO|LITROS?|L|M3|METRO|METROS?)$/;
+
+// Produtos que são SEMPRE granel sólido independente da unidade
+// Granel sólido: APENAS cereais/grãos a granel. Tudo embalado = Carga Geral.
+// Ração, fertilizante, calcário, areia, máquinas, embalados → Carga Geral.
+const PROD_GRANEL_SOLIDO  = /\b(SOJA|MILHO|ARROZ|TRIGO|SORGO|GIRASSOL|CANOLA|CEVADA|FARELO)\b/;
+const PROD_GRANEL_LIQUIDO = /\b(OLEO|ÓLEO|ACIDO GRAXO|ALCOOL|ÁLCOOL|GLICERINA|BIODIESEL|ETANOL)\b/;
+const PROD_FRIG           = /\b(FRANGO|CARNE|CONGELADO|RESFRIADO|FRIGORIF|SUINO|SUÍNO|BOVINO|EMBUTIDO)\b/;
+
+function classifProduto(nome, unidade) {
+  const n = (nome || '').toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  const u = (unidade || '').toUpperCase().trim();
+
+  if (PROD_FRIG.test(n))          return { tipo:'frigorificada', label:'Frigorificada' };
+  if (PROD_GRANEL_LIQUIDO.test(n)) return { tipo:'granelLiquido', label:'Granel Líquido' };
+
+  // Cereal a granel (unidade GRANEL ou sem unidade) = granel sólido
+  if (PROD_GRANEL_SOLIDO.test(n) && (u === 'GRANEL' || !u))
+    return { tipo:'granelSolido', label:'Granel Sólido' };
+
+  // Tudo mais: ração, fertilizante, calcário, areia, máquinas, embalados = Carga Geral
   return { tipo:'geral', label:'Carga Geral' };
 }
 
@@ -1061,22 +1367,26 @@ function parseLote(txt) {
     if (mQ) d.qt_total_kg = parseFloat(mQ[1].replace(/\./g,'').replace(',','.'));
   }
   if (!d.produto) {
-    // Formato B: Físico seguido do nome do produto e quantidade
-    const mFisico = t.match(/F[íi]sico\s+([A-ZÁÉÍÓÚÃÕÂÊÎÔÛÇ][A-ZÁÉÍÓÚÃÕÂÊÎÔÛÇ\s\-\/]+?)\s+([\d.]+,\d{3})/i);
+    // Formato B: "SOJA GRANEL 1.000,000" — produto + unidade + quantidade numa linha
+    // Tenta capturar unidade após o nome do produto
+    const mFisico = t.match(/F[íi]sico\s+([A-ZÁÉÍÓÚÃÕÂÊÎÔÛÇ][A-ZÁÉÍÓÚÃÕÂÊÎÔÛÇ\s\-\/]+?)\s+(GRANEL|SACOS?|BIG.?BAG|CAIXA|FARDO|FEIXE|PALLET|TAMBOR|UNIDADE|VOLUMES?|DUZIA|TON|QUILO|LITRO|METRO)?\s*([\d.]+,\d{3})/i);
     if (mFisico) {
       d.produto = mFisico[1].trim();
-      d.qt_total_kg = parseFloat(mFisico[2].replace(/\./g,'').replace(',','.'));
+      if (mFisico[2] && !d.unidade) d.unidade = mFisico[2].trim().toUpperCase();
+      d.qt_total_kg = parseFloat(mFisico[3].replace(/\./g,'').replace(',','.'));
     }
   }
   if (!d.produto) {
-    // Formato B: "Físico NOME DO PRODUTO 1.000,000..." tudo numa linha
-    const mFisico = t.match(/F[íi]sico\s+([A-ZÁÉÍÓÚÃÕÂÊÎÔÛÇ][A-ZÁÉÍÓÚÃÕÂÊÎÔÛÇ\s\-\/]+?)\s+([\d.]+,\d{3})/i);
-    if (mFisico) {
-      d.produto = mFisico[1].trim();
-      if (!d.qt_total_kg) d.qt_total_kg = parseFloat(mFisico[2].replace(/\./g,'').replace(',','.'));
+    const mFisico2 = t.match(/F[íi]sico\s+([A-ZÁÉÍÓÚÃÕÂÊÎÔÛÇ][A-ZÁÉÍÓÚÃÕÂÊÎÔÛÇ\s\-\/]+?)\s+([\d.]+,\d{3})/i);
+    if (mFisico2) {
+      d.produto = mFisico2[1].trim();
+      if (!d.qt_total_kg) d.qt_total_kg = parseFloat(mFisico2[2].replace(/\./g,'').replace(',','.'));
     }
   }
-  if (!d.produto) d.produto = get(/Produto\s+([^\n\t]+?)(?:\s{2,}|\t)/);
+  if (!d.produto) d.produto = get('Produto\\s+([^\\n\\t]+?)(?:\\s{2,}|\\t)');
+
+  // Normaliza unidade para maiúsculas
+  if (d.unidade) d.unidade = d.unidade.toUpperCase().trim();
 
   // ── TARIFAS — detecção inteligente do modo de cálculo ──────────────────
   //
@@ -1150,6 +1460,8 @@ function parseLote(txt) {
   // Remetente / Destinatário
   d.remetente    = get(/Remetente\s+\d+\s*\/\s*([^\n]+?)(?:\s+CNPJ|\s+CPF|\s+Cidade)/);
   d.destinatario = get(/Destinatário\s+\d+\s*\/\s*([^\n]+?)(?:\s+CNPJ|\s+CPF|\s+Cidade)/);
+  // Endereço do destinatário — usado como fallback quando origem=destino
+  d.destinatario_end = get('Endere.o Destinat.rio\\s+([^\\n]+)');
 
   return d;
 }
@@ -1172,7 +1484,6 @@ const CAPACIDADE_PADRAO = {
 const VEICULOS_SANA = [
   { label:'Rodotrem',      eixo:9, capacidade_ton:50   },
   { label:'Bitrem 8 Eixos',eixo:8, capacidade_ton:40   },
-  { label:'Carreta 4 Eixo',eixo:7, capacidade_ton:40   },
   { label:'Bitrem',        eixo:7, capacidade_ton:38   },
   { label:'Vanderleia',    eixo:6, capacidade_ton:36   },
   { label:'Carreta LS',    eixo:6, capacidade_ton:32.5 },
@@ -1828,42 +2139,81 @@ const CENTROIDE_UF = {
   "DF":[-15.7794,-47.9297]
 };
 
-async function geocode(cidade, uf, endereco='') {
-  const cidadeUp = cidade.toUpperCase().trim();
-  const ufUp     = uf.toUpperCase().trim();
+// Geocoding com 4 tentativas em ordem de precisão:
+// 1. Endereço completo (logradouro + bairro + cidade + UF)
+// 2. CEP (identifica fazendas e silos com mais precisão que nome de rua)
+// 3. Só o município (base local offline)
+// 4. Centroide da UF (último recurso)
+async function geocode(cidade, uf, endereco='', cep='') {
+  const cidadeUp = (cidade || '').toUpperCase().trim();
+  const ufUp     = (uf     || '').toUpperCase().trim();
+  const cepNum   = (cep    || '').replace(/\D/g,'');
 
-  // 1. Base local — só se não tiver endereço específico
-  if (!endereco) {
+  // Função auxiliar: busca município na base local offline
+  function buscarLocal() {
     const key = cidadeUp + '|' + ufUp;
-    if (CIDADES_BR[key]) {
-      const c = CIDADES_BR[key];
-      return { lat: c[0], lon: c[1], src: 'local' };
-    }
-    const keyNorm = key.replace(/['.`]/g,'').replace(/\s+/g,' ');
+    if (CIDADES_BR[key]) return CIDADES_BR[key];
+    const keyNorm = key.replace(/[\'.`]/g,'').replace(/\s+/g,' ');
     for (const k of Object.keys(CIDADES_BR)) {
-      if (k.replace(/['.`]/g,'').replace(/\s+/g,' ') === keyNorm) {
-        const c = CIDADES_BR[k];
-        return { lat: c[0], lon: c[1], src: 'local' };
-      }
+      if (k.replace(/[\'.`]/g,'').replace(/\s+/g,' ') === keyNorm) return CIDADES_BR[k];
     }
+    return null;
   }
 
-  // 2. Nominatim via proxy CORS — aceita endereço completo
-  try {
-    const query = endereco
-      ? `${endereco}, ${cidadeUp}, ${ufUp}, Brasil`
-      : `${cidadeUp}, ${ufUp}, Brasil`;
-    const q   = encodeURIComponent(query);
-    const url = encodeURIComponent(`https://nominatim.openstreetmap.org/search?q=${q}&format=json&limit=1&countrycodes=br`);
-    const ctrl = new AbortController();
-    const t    = setTimeout(() => ctrl.abort(), 8000);
-    const r    = await fetch(`https://corsproxy.io/?url=${url}`, { signal: ctrl.signal });
-    clearTimeout(t);
-    const data = await r.json();
-    if (data?.[0]) return { lat: +data[0].lat, lon: +data[0].lon, src: endereco ? 'nominatim_end' : 'nominatim' };
-  } catch {}
+  // Helper: chama Nominatim e valida se resultado está perto da cidade
+  async function nominatim(query, src) {
+    try {
+      const q   = encodeURIComponent(query);
+      const url = encodeURIComponent(`https://nominatim.openstreetmap.org/search?q=${q}&format=json&limit=1&countrycodes=br`);
+      const ctrl = new AbortController();
+      const t    = setTimeout(() => ctrl.abort(), 8000);
+      const r    = await fetch(`https://corsproxy.io/?url=${url}`, { signal: ctrl.signal });
+      clearTimeout(t);
+      const data = await r.json();
+      if (!data?.[0]) return null;
+      const lat = +data[0].lat, lon = +data[0].lon;
+      // Valida proximidade com o município (máx 80km — cobre fazendas distantes do centro)
+      if (cidadeUp && ufUp) {
+        const local = buscarLocal();
+        if (local) {
+          const distKm = Math.round(((lat - local[0])**2 + (lon - local[1])**2)**0.5 * 111);
+          // SP capital tem bairros a 50km do centro — usar raio maior
+          const raio = (cidadeUp.includes('SAO PAULO') || cidadeUp.includes('RIO DE JANEIRO')) ? 150 : 80;
+          if (distKm > raio) {
+            console.warn(`[geocode] ${src}: resultado ${distKm}km longe de ${cidadeUp}/${ufUp} — ignorado`);
+            return null;
+          }
+        }
+      }
+      return { lat, lon, src };
+    } catch { return null; }
+  }
 
-  // 3. Centroide da UF — fallback de último recurso
+  // 1. Sem endereço e sem CEP → base local primeiro (mais rápido)
+  if (!endereco && !cepNum) {
+    const local = buscarLocal();
+    if (local) return { lat: local[0], lon: local[1], src: 'local' };
+  }
+
+  // 2. Endereço completo + cidade + UF
+  if (endereco) {
+    const r = await nominatim(`${endereco}, ${cidadeUp}, ${ufUp}, Brasil`, 'end');
+    if (r) return r;
+  }
+
+  // 3. CEP — mais preciso para silos, fazendas e terminais fora do centro
+  if (cepNum.length === 8) {
+    const r = await nominatim(cepNum, 'cep');
+    if (r) return r;
+  }
+
+  // 4. Só o município
+  const local = buscarLocal();
+  if (local) return { lat: local[0], lon: local[1], src: 'local' };
+  const rNom = await nominatim(`${cidadeUp}, ${ufUp}, Brasil`, 'nominatim');
+  if (rNom) return rNom;
+
+  // 5. Centroide da UF — último recurso absoluto
   if (CENTROIDE_UF[ufUp]) {
     const c = CENTROIDE_UF[ufUp];
     return { lat: c[0], lon: c[1], src: 'centroide_uf' };
@@ -1873,17 +2223,21 @@ async function geocode(cidade, uf, endereco='') {
 }
 
 async function rotaOSRM(lat1, lon1, lat2, lon2) {
-  try {
-    const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), 5000);
-    const r = await fetch(
-      `https://router.project-osrm.org/route/v1/driving/${lon1},${lat1};${lon2},${lat2}?overview=false`,
-      { signal: controller.signal }
-    );
-    clearTimeout(timer);
-    const d = await r.json();
-    if (d.code === 'Ok') return Math.round(d.routes[0].distance / 100) / 10;
-  } catch {}
+  for (let tentativa = 0; tentativa < 2; tentativa++) {
+    try {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 15000);
+      const r = await fetch(
+        `https://router.project-osrm.org/route/v1/driving/${lon1},${lat1};${lon2},${lat2}?overview=false`,
+        { signal: controller.signal }
+      );
+      clearTimeout(timer);
+      const d = await r.json();
+      if (d.code === 'Ok') return Math.round(d.routes[0].distance / 100) / 10;
+    } catch (e) {
+      if (tentativa === 0) await new Promise(res => setTimeout(res, 1000));
+    }
+  }
   return null;
 }
 
@@ -1917,7 +2271,7 @@ function labelModo(modo, heuristico) {
 }
 
 function renderResultado(d, kmInfo) {
-  const classif         = classifProduto(d.produto);
+  const classif         = classifProduto(d.produto, d.unidade);
   const tarifaMotorista = d.tarifa_motorista ?? null;
   const tarifaEmpresa   = d.tarifa_empresa ?? null;
   const modoMot         = d.modo_calculo_motorista || 'desconhecido';
@@ -1933,21 +2287,21 @@ function renderResultado(d, kmInfo) {
   const eixos = extrairEixos();
 
   // Calcula pisos E frete para cada veículo individualmente
-  // REGRA: frete por veículo = tarifa × capacidade daquele veículo (tarifa × eixo)
-  // ton_real só é usado se for modo 'total' (valor fixo) — nunca substitui a capacidade do veículo
+  // REGRA ANTT: frete = tarifa × TON_EXIBIR[eixo]
+  // A ANTT classifica por eixos, não por modelo de veículo.
+  // Vanderleia e Carreta LS têm 6 eixos → mesma tonelagem → mesmo frete para a mesma tarifa.
   const pisosRaw = km ? eixos.map(({label, eixo, capacidade_ton}) => {
-    // Frete deste veículo = tarifa × capacidade_ton (regra base: tarifa × eixo)
-    // Para modo 'total': frete fixo independente do veículo
+    const tonAntt = TON_EXIBIR[eixo] ?? capacidade_ton; // tonelagem ANTT para este eixo
     const freteVeic = modoMot === 'total'
       ? calcularFrete(tarifaMotorista, 'total', 0, 0)
-      : (tarifaMotorista && capacidade_ton)
-        ? Math.round(tarifaMotorista * capacidade_ton * 100) / 100
+      : (tarifaMotorista && tonAntt)
+        ? Math.round(tarifaMotorista * tonAntt * 100) / 100
         : null;
 
     const {piso, ccd, cc, eixoEf} = calcPiso(classif.tipo, eixo, km);
     const ok = freteVeic != null ? freteVeic >= piso : null;
     return { label, eixo, eixoEf, piso, ccd, cc, ok,
-             freteVeic, ton_base: capacidade_ton, capacidade_ton, usou_cap: true };
+             freteVeic, ton_base: tonAntt, capacidade_ton, usou_cap: true };
   }) : [];
   const pisos = pisosRaw.sort((a,b) => b.eixo - a.eixo);
 
@@ -1955,7 +2309,7 @@ function renderResultado(d, kmInfo) {
   console.log('[render] versão: VEICULOS_SANA hardcoded');
   console.log('[render] km:', km, '| kmSrc:', kmSrc);
   console.log('[render] modo:', modoMot, '| tarifa:', tarifaMotorista, '| ton_real:', ton_real);
-  console.log('[render] veículos:', eixos.map(e=>e.label+'/'+e.eixo+'eixos/'+e.capacidade_ton+'t').join(', '));
+  console.log('[render] veículos:', eixos.map(e=>e.label+'/'+e.eixo+'eixos/TON_EXIBIR='+TON_EXIBIR[e.eixo]+'t').join(', '));
   console.log('[render] pisos calculados:', pisos.length, pisos.map(p=>p.label+': frete='+p.freteVeic+' piso='+p.piso+' ok='+p.ok).join(' | '));
 
   // Veículo único alocado vs múltiplos tipos permitidos
@@ -2029,10 +2383,20 @@ function renderResultado(d, kmInfo) {
     : kmSrc === 'lote'
     ? `<span class="km-badge km-lote">Do lote</span>` : '';
 
+  // Cores e ícone por tipo de carga
+  const tipoCorBg  = { granelSolido:'#fef3c7', geral:'#eff6ff', granelLiquido:'#e0f2fe', frigorificada:'#ede9fe', neogranel:'#f0fdf4' }[classif.tipo] || '#f5f5f5';
+  const tipoCorTxt = { granelSolido:'#92400e', geral:'#1d4ed8', granelLiquido:'#0369a1', frigorificada:'#6d28d9', neogranel:'#166534' }[classif.tipo] || '#555';
+  const tipoIcone  = { granelSolido:'🌾', geral:'📦', granelLiquido:'💧', frigorificada:'❄️', neogranel:'🏗️' }[classif.tipo] || '📦';
+
   html += `<div class="km-card">
     <div class="km-card-icon">📍</div>
     <div class="km-card-body">
-      <div class="km-card-label">KM da rota ${kmBadgeLabel}</div>
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px">
+        <div class="km-card-label" style="margin-bottom:0">KM da rota ${kmBadgeLabel}</div>
+        <div style="background:${tipoCorBg};color:${tipoCorTxt};padding:3px 10px;border-radius:20px;font-size:12px;font-weight:700;display:flex;align-items:center;gap:4px">
+          ${tipoIcone} ${classif.label}
+        </div>
+      </div>
       <div class="km-card-value">${km ? km.toLocaleString('pt-BR') + 'km' : '—'}</div>
       <div class="km-card-sub">${d.cidade_origem||'?'}/${d.uf_origem||'?'} → ${d.cidade_destino||'?'}/${d.uf_destino||'?'}</div>
     </div>
@@ -2085,7 +2449,7 @@ function renderResultado(d, kmInfo) {
   } else {
     // ── MÚLTIPLOS VEÍCULOS — tabela comparativa ──
     html += `<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px">
-      <div style="font-size:12px;color:var(--ink3)">Lote com ${pisos.length} tipos de veículo. Confira qual será alocado.</div>
+      <div style="font-size:12px;color:var(--ink3)">Lote com ${pisos.length} tipos de veículo · <span style="font-weight:700;color:${classif.tipo==='granelSolido'?'#b45309':classif.tipo==='geral'?'var(--blue)':'var(--green)'}">${classif.label}</span></div>
       <button onclick="copiarEspelhoSelecionado()" style="
         padding:7px 14px;background:var(--ink);color:white;border:none;border-radius:8px;
         font-family:'Figtree',sans-serif;font-size:13px;font-weight:600;cursor:pointer;
@@ -2119,7 +2483,7 @@ function renderResultado(d, kmInfo) {
       const statusTxt = ok===true ? '✓ OK' : ok===false ? '✗ Abaixo' : '?';
       html += `<tr${isPior ? ' style="background:#f8f9ff"' : ''}>
         <td style="text-align:center">
-          <input type="checkbox" class="esp-row-check" checked
+          <input type="checkbox" class="esp-row-check" ${eixo >= 6 ? 'checked' : ''}
             data-label="${label}" data-eixo="${eixo}" data-ton="${tonExib??'—'}"
             data-frete="${freteVeic!=null ? fmtR(freteVeic) : '—'}"
             data-piso="${fmtR(piso)}"
@@ -2158,7 +2522,7 @@ function renderResultado(d, kmInfo) {
       const linhaFrete = modoMot === 'total'
         ? `<b>Frete</b> = <b>${fmtR(tarifaMotorista)}</b> <span style="color:var(--ink3)">(valor total fixo)</span>`
         : ton_base
-          ? `<b>Frete</b> = ${fmtR(tarifaMotorista)}/t × ${ton_base.toLocaleString('pt-BR',{maximumFractionDigits:1})}t (cap. ${label}) = <b>${freteVeic!=null?fmtR(freteVeic):'—'}</b>`
+          ? `<b>Frete</b> = ${fmtR(tarifaMotorista)}/t × ${ton_base.toLocaleString('pt-BR',{maximumFractionDigits:1})}t (ref. ${eixo} eixos ANTT) = <b>${freteVeic!=null?fmtR(freteVeic):'—'}</b>`
           : `<b>Frete</b> = ${fmtR(tarifaMotorista)}/t × ?`;
 
       const linhaPiso = `<b>Piso</b> = (${km.toLocaleString('pt-BR')}km × ${fmtN(ccd)}) + ${fmtN(cc,2)} = <b>${fmtR(piso)}</b>`;
@@ -2211,11 +2575,13 @@ function renderResultado(d, kmInfo) {
       </div>
       <div class="field-row full">
         <div class="field-lbl">Produto</div>
-        <div class="field-vl">${d.produto || '—'}</div>
+        <div class="field-vl">${d.produto || '—'}${d.unidade ? ' <span style="font-size:11px;background:var(--bg);border:1px solid var(--border);border-radius:6px;padding:1px 7px;font-weight:600;color:var(--ink3);margin-left:6px">'+d.unidade+'</span>' : ''}</div>
       </div>
       <div class="field-row">
         <div class="field-lbl">Tipo ANTT</div>
-        <div class="field-vl ok">${classif.label}</div>
+        <div class="field-vl ok">${classif.label}
+          ${d.unidade ? '<span style="font-size:11px;color:var(--ink3);font-weight:400;margin-left:6px">via unidade: '+d.unidade+'</span>' : ''}
+        </div>
       </div>
       <div class="field-row">
         <div class="field-lbl">Quantidade</div>
@@ -2346,7 +2712,7 @@ async function processar() {
 
   const d = parseLote(txt);
   log(`Parser concluído — lote: ${d.nr_lote || '?'} | origem: ${d.cidade_origem}/${d.uf_origem} | destino: ${d.cidade_destino}/${d.uf_destino}`);
-  log(`Produto: ${d.produto || '?'} | qt_total_kg: ${d.qt_total_kg || '?'} | tarifa_mot: ${d.tarifa_motorista || '?'} | modo: ${d.modo_calculo_motorista || '?'}`);
+  log(`Produto: ${d.produto || '?'} | Unidade: ${d.unidade || '—'} | qt_total_kg: ${d.qt_total_kg || '?'} | tarifa_mot: ${d.tarifa_motorista || '?'} | modo: ${d.modo_calculo_motorista || '?'}`);
 
   if (!d.cidade_origem || !d.cidade_destino) {
     document.getElementById('resultado').innerHTML = `
@@ -2369,6 +2735,26 @@ async function processar() {
       `Buscando rota: ${d.cidade_origem}/${d.uf_origem} → ${d.cidade_destino}/${d.uf_destino}`,
       'Consultando OpenStreetMap... (máx. 20s no total)'
     );
+
+    // Detectar frete interno (origem = destino = mesmo município)
+    if (d.cidade_origem && d.cidade_destino &&
+        d.cidade_origem.trim().toUpperCase() === d.cidade_destino.trim().toUpperCase() &&
+        d.uf_origem === d.uf_destino) {
+      log(`Frete interno detectado: ${d.cidade_origem}/${d.uf_origem} → ${d.cidade_destino}/${d.uf_destino}`);
+      document.getElementById('resultado').innerHTML = `
+        <div class="veredicto atencao">
+          <div class="v-icon">🏙️</div>
+          <div class="v-status">Frete interno — mesmo município</div>
+          <div class="v-desc">
+            Origem e destino estão na mesma cidade: <b>${d.cidade_origem}/${d.uf_origem}</b>.<br>
+            Para calcular o piso ANTT em fretes urbanos, informe o endereço completo de coleta e entrega.<br><br>
+            Use a <b>aba Cotação de Frete</b> → cole as coordenadas ou endereços específicos nos campos de origem e destino.
+          </div>
+        </div>`;
+      btn.disabled = false;
+      btn.textContent = 'Verificar frete';
+      return;
+    }
 
     log(`Buscando coordenadas: ${d.cidade_origem}/${d.uf_origem} e ${d.cidade_destino}/${d.uf_destino}`);
 
@@ -2423,14 +2809,14 @@ function trocarMainTab(e, id) {
 
 // ─── CALCULADORA DE COTAÇÃO ──────────────────────────────────────────────────
 const EIXOS_COTACAO = [
-  { eixo:2, label:'Toco',            ton: TON_EXIBIR[2] },
-  { eixo:3, label:'Truck',           ton: TON_EXIBIR[3] },
-  { eixo:4, label:'Bitruck',         ton: TON_EXIBIR[4] },
-  { eixo:5, label:'Carreta',         ton: TON_EXIBIR[5] },
-  { eixo:6, label:'LS / Vanderleia', ton: TON_EXIBIR[6] },
-  { eixo:7, label:'Bitrem / 4 Eixo', ton: TON_EXIBIR[7] },
-  { eixo:8, label:'Bitrem 8 Eixos',  ton: TON_EXIBIR[8] },
-  { eixo:9, label:'Rodotrem',        ton: TON_EXIBIR[9] },
+  { eixo:2, label:'Toco',           ton: TON_EXIBIR[2] },
+  { eixo:3, label:'Truck',          ton: TON_EXIBIR[3] },
+  { eixo:4, label:'Bitruck',        ton: TON_EXIBIR[4] },
+  { eixo:5, label:'Carreta',        ton: TON_EXIBIR[5] },
+  { eixo:6, label:'LS / Vanderleia',ton: TON_EXIBIR[6] },
+  { eixo:7, label:'Bitrem',         ton: TON_EXIBIR[7] },
+  { eixo:8, label:'Bitrem 8 Eixos', ton: TON_EXIBIR[8] },
+  { eixo:9, label:'Rodotrem',       ton: TON_EXIBIR[9] },
 ];
 
 // Detecta par de coordenadas: "-28.2622,-52.4083" | "-28.26 -52.40" etc.
@@ -2469,94 +2855,6 @@ async function resolverPonto(str, enderecoExtra) {
 }
 
 // Abre Google Maps com a rota entre origem e destino
-let _mapaLeaflet = null;
-
-async function abrirMapa() {
-  const ctx = window._cotacaoContexto;
-  if (!ctx || !ctx.g1 || !ctx.g2) {
-    alert('Calcule a rota com origem e destino antes de abrir o mapa.');
-    return;
-  }
-
-  document.getElementById('mapa-overlay').classList.add('aberto');
-  document.getElementById('mapa-modal-sub').textContent = 'Carregando mapa...';
-
-  // Carrega Leaflet se necessário
-  if (!window.L) {
-    await new Promise(resolve => {
-      const css = document.createElement('link');
-      css.rel = 'stylesheet';
-      css.href = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css';
-      document.head.appendChild(css);
-      const s = document.createElement('script');
-      s.src = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js';
-      s.onload = resolve;
-      document.head.appendChild(s);
-    });
-  }
-
-  // Remove mapa anterior
-  if (_mapaLeaflet) { _mapaLeaflet.remove(); _mapaLeaflet = null; }
-  document.getElementById('mapa-leaflet').innerHTML = '';
-
-  const { g1, g2, origStr, destStr, origEnd, destEnd } = ctx;
-  const map = L.map('mapa-leaflet');
-  _mapaLeaflet = map;
-
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© <a href="https://openstreetmap.org">OpenStreetMap</a>',
-    maxZoom: 18
-  }).addTo(map);
-
-  const mkIcon = (letra, cor) => L.divIcon({
-    html: `<div style="background:${cor};color:white;border-radius:50% 50% 50% 0;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;transform:rotate(-45deg);box-shadow:0 2px 6px rgba(0,0,0,.3)"><span style="transform:rotate(45deg)">${letra}</span></div>`,
-    className:'', iconSize:[28,28], iconAnchor:[14,28]
-  });
-
-  const labelA = origEnd ? `${origEnd}, ${origStr}` : origStr;
-  const labelB = destEnd ? `${destEnd}, ${destStr}` : destStr;
-
-  L.marker([g1.lat,g1.lon],{icon:mkIcon('A','#2563eb')}).addTo(map)
-    .bindPopup(`<b>Origem</b><br>${labelA.toUpperCase()}`).openPopup();
-  L.marker([g2.lat,g2.lon],{icon:mkIcon('B','#dc2626')}).addTo(map)
-    .bindPopup(`<b>Destino</b><br>${labelB.toUpperCase()}`);
-
-  // Tenta desenhar rota real via OSRM
-  try {
-    const ctrl = new AbortController();
-    setTimeout(() => ctrl.abort(), 7000);
-    const res = await fetch(
-      `https://router.project-osrm.org/route/v1/driving/${g1.lon},${g1.lat};${g2.lon},${g2.lat}?overview=full&geometries=geojson`,
-      { signal: ctrl.signal }
-    );
-    const data = await res.json();
-    if (data.code === 'Ok') {
-      const km = Math.round(data.routes[0].distance / 100) / 10;
-      const layer = L.geoJSON(data.routes[0].geometry, {
-        style: { color:'#2563eb', weight:5, opacity:.8 }
-      }).addTo(map);
-      map.fitBounds(layer.getBounds(), { padding:[50,50] });
-      document.getElementById('mapa-modal-sub').textContent =
-        `${labelA.toUpperCase()} → ${labelB.toUpperCase()} · ${km.toLocaleString('pt-BR')}km · Rota real (OpenStreetMap)`;
-    } else throw new Error();
-  } catch {
-    // Fallback linha reta
-    L.polyline([[g1.lat,g1.lon],[g2.lat,g2.lon]],
-      {color:'#2563eb',weight:3,dashArray:'8 6',opacity:.7}).addTo(map);
-    map.fitBounds([[g1.lat,g1.lon],[g2.lat,g2.lon]],{padding:[60,60]});
-    document.getElementById('mapa-modal-sub').textContent =
-      `${labelA.toUpperCase()} → ${labelB.toUpperCase()} · Linha reta (OSRM indisponível)`;
-  }
-
-  setTimeout(() => map.invalidateSize(), 150);
-}
-
-function fecharMapa(e) {
-  if (e.target === document.getElementById('mapa-overlay')) fecharMapaForce();
-}
-function fecharMapaForce() {
-  document.getElementById('mapa-overlay').classList.remove('aberto');
-}
 
 async function calcularCotacao() {
   const tipo     = document.getElementById('cot-tipo').value;
@@ -2569,9 +2867,11 @@ async function calcularCotacao() {
   if (!tipo) { alert('Selecione o tipo de carga.'); return; }
 
   const temKmManual = kmManual > 0;
-  const temRota = origStr.length >= 2 && destStr.length >= 2;
+  const pontosCotacao = getPontosCotacao();
+  const temRota = pontosCotacao.length >= 2;
+
   if (!temKmManual && !temRota) {
-    alert('Preencha o KM da rota ou informe origem e destino.');
+    alert('Preencha o KM da rota ou informe ao menos origem e destino.');
     return;
   }
 
@@ -2581,40 +2881,78 @@ async function calcularCotacao() {
 
   let km = null, kmSrcLabel = '', kmCardVisivel = false;
   let g1 = null, g2 = null;
+  let geopontos = [];
 
   if (temKmManual) {
     km = kmManual;
+    // Resolve TODOS os pontos para o mapa (mesmo com KM manual)
+    if (pontosCotacao.length >= 2) {
+      for (const p of pontosCotacao) {
+        const g = await resolverPonto(p.str, p.end);
+        if (g) geopontos.push({ ...g, label: p.str });
+      }
+      if (geopontos.length >= 2) {
+        g1 = geopontos[0];
+        g2 = geopontos[geopontos.length - 1];
+      }
+    }
+    // Se veio do roteirizador, usa os geopontos já salvos no contexto anterior
+    if (!geopontos.length && window._cotacaoContexto && window._cotacaoContexto.geopontos && window._cotacaoContexto.geopontos.length >= 2) {
+      geopontos = window._cotacaoContexto.geopontos;
+      g1 = geopontos[0];
+      g2 = geopontos[geopontos.length - 1];
+    }
   } else {
-    btn.textContent = 'Buscando rota...';
-    g1 = await resolverPonto(origStr, origEnd);
-    g2 = await resolverPonto(destStr, destEnd);
-
-    if (!g1 || !g2) {
-      btn.disabled = false;
-      btn.textContent = 'Calcular para todos os eixos';
-      alert(`Ponto não encontrado: ${!g1 ? origStr : destStr}.\nTente: CIDADE/UF ou coordenadas como -28.26,-52.40`);
-      return;
+    btn.textContent = 'Geocodificando pontos...';
+    // Resolver todos os pontos (origem + paradas + destino)
+    for (const p of pontosCotacao) {
+      const g = await resolverPonto(p.str, p.end);
+      if (!g) {
+        btn.disabled = false;
+        btn.textContent = 'Calcular para todos os eixos';
+        alert(`Ponto não encontrado: ${p.str}.
+Tente: CIDADE/UF ou coordenadas como -28.26,-52.40`);
+        return;
+      }
+      geopontos.push({ ...g, label: p.str });
     }
 
-    btn.textContent = 'Calculando distância...';
-    const kmOSRM = await rotaOSRM(g1.lat, g1.lon, g2.lat, g2.lon);
-    km = kmOSRM ?? haversine(g1.lat, g1.lon, g2.lat, g2.lon);
+    g1 = geopontos[0];
+    g2 = geopontos[geopontos.length - 1];
 
-    const labelOrig = g1.src === 'coords'
-      ? `📌 ${origStr}` : (origEnd ? `${origEnd}, ${origStr}` : origStr);
-    const labelDest = g2.src === 'coords'
-      ? `📌 ${destStr}` : (destEnd ? `${destEnd}, ${destStr}` : destStr);
+    btn.textContent = 'Calculando distância...';
+
+    let kmOSRM = null;
+    if (geopontos.length === 2) {
+      kmOSRM = await rotaOSRM(g1.lat, g1.lon, g2.lat, g2.lon);
+    } else {
+      const result = await rotaOSRMMulti(geopontos);
+      kmOSRM = result ? result.km : null;
+    }
+
+    km = kmOSRM ?? (() => {
+      // Soma haversine de cada trecho
+      let total = 0;
+      for (let i = 0; i < geopontos.length - 1; i++)
+        total += haversine(geopontos[i].lat, geopontos[i].lon, geopontos[i+1].lat, geopontos[i+1].lon);
+      return Math.round(total * 10) / 10;
+    })();
+
+    const nParadas = geopontos.length - 2;
+    const paradaStr = nParadas > 0 ? ` · ${nParadas} parada${nParadas>1?'s':''}` : '';
+    const labelOrig = origEnd ? `${origEnd}, ${origStr}` : origStr;
+    const labelDest = destEnd ? `${destEnd}, ${destStr}` : destStr;
     kmSrcLabel = (kmOSRM ? '📍 Rota real (OpenStreetMap)' : '📐 Estimado (haversine ×1,27)') +
-                 ` · ${labelOrig.toUpperCase()} → ${labelDest.toUpperCase()}`;
+                 ` · ${labelOrig.toUpperCase()} → ${labelDest.toUpperCase()}${paradaStr}`;
     kmCardVisivel = true;
   }
 
-  // Salva coords para o botão roteirizar
+  // Salva contexto para "Ver no mapa"
   window._cotacaoContexto = {
     km, tipo,
     tipoLabel: {geral:'Carga Geral',granelSolido:'Granel Sólido',granelLiquido:'Granel Líquido',
                 frigorificada:'Frigorificada',neogranel:'Neogranel',conteinerizada:'Conteinerizada'}[tipo]||tipo,
-    g1, g2, origStr, destStr, origEnd, destEnd
+    g1, g2, geopontos, origStr, destStr, origEnd, destEnd
   };
 
   btn.disabled = false;
@@ -2667,7 +3005,7 @@ async function calcularCotacao() {
     const tarifa = ton > 0 ? Math.round((r.piso / ton) * 100) / 100 : null;
     html += `<tr>
       <td style="text-align:center">
-        <input type="checkbox" class="cot-row-check" checked
+        <input type="checkbox" class="cot-row-check" ${eixo >= 6 ? 'checked' : ''}
           data-label="${label}" data-eixo="${eixo}" data-ton="${ton}"
           data-piso="${fmtR(r.piso)}" data-tarifa="${tarifa ? fmtR(tarifa)+'/t' : '—'}"
           style="width:15px;height:15px;cursor:pointer">
@@ -2827,7 +3165,9 @@ async function processarLoteXLS(row) {
   const orig = parseCidadeXLS(row.nm_cidade_origem);
   const dest = parseCidadeXLS(row.nm_cidade_destino);
   const produto   = row.nm_produto || '';
-  const classif   = classifProduto(produto);
+  // Tenta extrair unidade do lote XLS (coluna nm_unidade se disponível)
+  const unidadeXls = (row.nm_unidade || row.ds_unidade || row.unidade || '').toString().toUpperCase().trim();
+  const classif   = classifProduto(produto, unidadeXls);
   const modoMot   = detectarModoXLS(row.id_calculo_tarifa_cf);
   const tarifaMot = parseFloat(row.vl_tarifa_motorista) || null;
   const tarifaEmp = parseFloat(row.vl_tarifa_empresa) || null;
@@ -3068,6 +3408,2081 @@ function renderTabelaXLS(resultados, total) {
 
   area.innerHTML = html;
 }
+
+// ─── ABA REL. CTRC ────────────────────────────────────────────────────────────
+let ctrcDados = [];  // todos os registros processados
+
+function ctrcOnDrop(e) {
+  e.preventDefault();
+  document.getElementById('ctrcUploadArea').classList.remove('dragover');
+  const f = e.dataTransfer.files[0];
+  if (f) ctrcProcessarArquivo(f);
+}
+
+function ctrcOnFileSelect(e) {
+  const f = e.target.files[0];
+  if (f) ctrcProcessarArquivo(f);
+}
+
+function ctrcProcessarArquivo(file) {
+  const res = document.getElementById('ctrc-resultado');
+  const sum = document.getElementById('ctrc-summary');
+  res.innerHTML = '<div style="text-align:center;padding:40px;color:var(--ink3)">⏳ Processando...</div>';
+  sum.style.display = 'none';
+  document.getElementById('ctrcBtnExportar').style.display = 'none';
+
+  const reader = new FileReader();
+  reader.onload = async function(e) {
+    try {
+      if (typeof XLSX === 'undefined') {
+        await new Promise((resolve, reject) => {
+          const s = document.createElement('script');
+          s.src = 'https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js';
+          s.onload = resolve; s.onerror = reject;
+          document.head.appendChild(s);
+        });
+      }
+      const data = new Uint8Array(e.target.result);
+      const wb = XLSX.read(data, { type: 'array' });
+      const ws = wb.Sheets[wb.SheetNames[0]];
+      const rows = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '' });
+
+      // Detectar linha de cabeçalho
+      let headerRow = -1;
+      for (let i = 0; i < Math.min(5, rows.length); i++) {
+        if (rows[i].some(c => String(c).includes('nr_ctrc') || String(c).includes('nm_agencia'))) {
+          headerRow = i;
+          break;
+        }
+      }
+      if (headerRow === -1) {
+        res.innerHTML = '<div class="alerta alerta-warn">⚠ Formato não reconhecido. Verifique se é o relatório CTRC detalhado.</div>';
+        return;
+      }
+
+      const headers = rows[headerRow].map(h => String(h).trim().toLowerCase());
+      const idx = {
+        ctrc:      headers.indexOf('nr_ctrc'),
+        data:      headers.indexOf('dt_emissao'),
+        agencia:   headers.indexOf('nm_agencia'),
+        orig:      headers.indexOf('nm_cidade_origem'),
+        ufOrig:    headers.indexOf('ds_uf_origem'),
+        dest:      headers.indexOf('nm_cidade_destino'),
+        ufDest:    headers.indexOf('ds_uf_destino'),
+        emissor:   headers.indexOf('nm_pessoa_usuario'),
+        eixo:      headers.indexOf('nr_eixo'),
+        produto:   headers.indexOf('nm_produto'),
+        unidade:   headers.indexOf('nm_unidade'),
+        grupoProd: headers.indexOf('nm_grupo_produto_transportado'),
+        embarque:  headers.indexOf('nr_embarque'),
+        frete:     headers.indexOf('vl_frete_motorista'),
+        baseMot:   headers.indexOf('vl_base_motorista'),
+        tarifa:    headers.indexOf('vl_tarifa_motorista'),
+        tarifaEmp: headers.indexOf('vl_tarifa_empresa'),
+        prDif:     headers.indexOf('pr_dif_frete'),
+        peso:      headers.indexOf('vl_peso_kg'),
+        km:        headers.indexOf('vl_km_rodado'),
+      };
+
+      ctrcDados = [];
+      for (let i = headerRow + 1; i < rows.length; i++) {
+        const r = rows[i];
+        const ctrc    = r[idx.ctrc];
+        if (!ctrc && ctrc !== 0) continue;
+        const agencia = String(r[idx.agencia] || '').trim();
+        const emissor = String(r[idx.emissor] || '').trim();
+        const orig    = String(r[idx.orig] || '').trim();
+        const ufOrig  = String(r[idx.ufOrig] || '').trim();
+        const dest    = String(r[idx.dest] || '').trim();
+        const ufDest  = String(r[idx.ufDest] || '').trim();
+        const data    = String(r[idx.data] || '').trim();
+        const eixo     = parseFloat(r[idx.eixo]) || 0;
+        const pesoKg   = idx.peso >= 0 ? parseFloat(r[idx.peso]) || 0 : 0;
+
+        // Tarifa motorista: usa vl_tarifa_motorista se preenchido,
+        // senão deriva: vl_tarifa_empresa × (1 - pr_dif_frete/100)
+        const tarifaMot  = idx.tarifa    >= 0 ? parseFloat(r[idx.tarifa])    || 0 : 0;
+        const tarifaEmp  = idx.tarifaEmp >= 0 ? parseFloat(r[idx.tarifaEmp]) || 0 : 0;
+        const prDif      = idx.prDif     >= 0 ? parseFloat(r[idx.prDif])     || 0 : 0;
+        const tarifaPaga = tarifaMot > 0
+          ? tarifaMot
+          : (tarifaEmp > 0 ? Math.round(tarifaEmp * (1 - prDif / 100) * 100) / 100 : 0);
+        const tarifaFonte = tarifaMot > 0 ? 'campo' : tarifaEmp > 0 ? 'calculada' : 'zero';
+
+        const km = r[idx.km] !== '' ? parseFloat(r[idx.km]) : null;
+
+        // Produto e unidade — extraídos fora do if para usar no push
+        const produtoCte = idx.produto   >= 0 ? String(r[idx.produto]   || '').trim() : '';
+        // nm_grupo_produto_transportado ("TICKET DE DESCARGA" etc.) NÃO é unidade de medida
+        // Usar apenas nm_unidade se disponível
+        const unidadeCte = idx.unidade >= 0 ? String(r[idx.unidade] || '').trim().toUpperCase() : '';
+
+        // Classificar CT-e automaticamente pelo produto
+        const classifCte = classifProduto(produtoCte, unidadeCte);
+        const tipoCte    = classifCte.tipo;
+
+        let piso = null, eixoEf = null, tarifaAntt = null, diffTarifa = null, status = 'semkm';
+        if (km && km > 0 && eixo > 0) {
+          const calc = calcPiso(tipoCte, eixo, km);
+          piso       = calc.piso;
+          eixoEf     = calc.eixoEf;
+          tarifaAntt = pesoKg > 0 ? Math.round(piso / (pesoKg / 1000) * 100) / 100 : null;
+          if (tarifaPaga > 0 && tarifaAntt !== null) {
+            diffTarifa = Math.round((tarifaPaga - tarifaAntt) * 100) / 100;
+            status = diffTarifa >= 0 ? 'ok' : 'abaixo';
+          } else if (tarifaPaga === 0) {
+            status = 'semtarifa';
+          }
+        }
+
+        const embarque = idx.embarque >= 0 ? String(r[idx.embarque] || '').trim() : '';
+        const valorEmitido = tarifaPaga > 0 && pesoKg > 0 ? Math.round(tarifaPaga * (pesoKg/1000) * 100) / 100 : null;
+        ctrcDados.push({ ctrc, data, agencia, emissor, orig, ufOrig, dest, ufDest, produtoCte, unidadeCte,
+          tipoCte, embarque, eixo, pesoKg, tarifaPaga, tarifaFonte, tarifaAntt, diffTarifa,
+          valorEmitido, piso, km, status, eixoEf });
+      }
+
+      // Popular filtro de agências
+      const agencias = [...new Set(ctrcDados.map(d => d.agencia).filter(Boolean))].sort();
+      const selAg = document.getElementById('ctrc-agencia-filter');
+      selAg.innerHTML = '<option value="">Todas as agências</option>';
+      agencias.forEach(ag => selAg.innerHTML += `<option value="${ag}">${ag}</option>`);
+
+      document.getElementById('ctrcBtnExportar').style.display = 'inline-flex';
+      const semKmCount = ctrcDados.filter(d => d.status === 'semkm').length;
+      document.getElementById('ctrcBtnGeocode').style.display = semKmCount > 0 ? 'inline-flex' : 'none';
+      document.getElementById('ctrcBtnGeocode').textContent = `📍 Calcular KM faltante (${semKmCount})`;
+      ctrcRenderTabela();
+
+    } catch(err) {
+      res.innerHTML = `<div class="alerta alerta-warn">⚠ Erro ao processar: ${err.message}</div>`;
+    }
+  };
+  reader.readAsArrayBuffer(file);
+}
+
+function ctrcRenderTabela() {
+  if (!ctrcDados.length) return;
+
+  const tipo   = document.getElementById('ctrc-tipo').value;
+  const agFilt = document.getElementById('ctrc-agencia-filter').value;
+  const stFilt = document.getElementById('ctrc-status-filter').value;
+
+  const TIPO_LABEL = { todos:'Todos os tipos', geral:'Carga Geral', granelSolido:'Granel Sólido', granelLiquido:'Granel Líquido', frigorificada:'Frigorificada', conteinerizada:'Conteinerizada' };
+
+  // Recalcular usando tipoCte de cada CT-e (classificação automática por produto)
+  ctrcDados.forEach(d => {
+    if (d.km && d.km > 0 && d.eixo > 0) {
+      const calc     = calcPiso(d.tipoCte || 'geral', d.eixo, d.km);
+      d.piso         = calc.piso;
+      d.eixoEf       = calc.eixoEf;
+      d.tarifaAntt   = d.pesoKg > 0 ? Math.round(d.piso / (d.pesoKg / 1000) * 100) / 100 : null;
+      d.valorEmitido = d.tarifaPaga > 0 && d.pesoKg > 0 ? Math.round(d.tarifaPaga * (d.pesoKg/1000) * 100) / 100 : null;
+      if (d.tarifaPaga > 0 && d.tarifaAntt !== null) {
+        d.diffTarifa = Math.round((d.tarifaPaga - d.tarifaAntt) * 100) / 100;
+        d.status     = d.diffTarifa >= 0 ? 'ok' : 'abaixo';
+      } else if (!d.tarifaPaga) { d.status = 'semtarifa'; }
+    }
+  });
+
+  // Filtrar
+  let dados = ctrcDados;
+  // Filtro de tipo: "Todos" mostra tudo; seleção específica filtra pelo tipo do CT-e
+  // 'todos' = sem filtro de tipo; demais filtram pelo tipoCte do CT-e
+  if (tipo !== 'todos') dados = dados.filter(d => (d.tipoCte || 'geral') === tipo);
+  if (agFilt) dados = dados.filter(d => d.agencia === agFilt);
+  if (stFilt) dados = dados.filter(d => d.status === stFilt);
+
+  // Totais
+  const total      = ctrcDados.length;
+  const filtrado   = dados.length;
+  const comKm      = ctrcDados.filter(d => d.status !== 'semkm').length;
+  const semKm      = ctrcDados.filter(d => d.status === 'semkm').length;
+  const abaixo     = ctrcDados.filter(d => d.status === 'abaixo').length;
+  const ok         = ctrcDados.filter(d => d.status === 'ok').length;
+  const semTar     = ctrcDados.filter(d => d.status === 'semtarifa').length;
+  const pctAbaixo  = comKm > 0 ? (abaixo / comKm * 100).toFixed(1) : 0;
+
+  // Totais financeiros
+  const totalEmitido = ctrcDados.reduce((s, d) => s + (d.valorEmitido || 0), 0);
+  const totalPiso    = ctrcDados.reduce((s, d) => s + (d.piso || 0), 0);
+  const totalDiff    = totalEmitido - totalPiso;
+
+  // Summary cards
+  const sum = document.getElementById('ctrc-summary');
+  sum.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:16px';
+  sum.innerHTML = `
+    <div style="background:var(--surface);border-radius:10px;padding:12px;text-align:center;border:1px solid var(--border)">
+      <div style="font-size:20px;font-weight:800;color:var(--ink1)">${total}</div>
+      <div style="font-size:10px;color:var(--ink3);text-transform:uppercase;font-weight:600">Total CT-es</div>
+    </div>
+    <div style="background:var(--surface);border-radius:10px;padding:12px;text-align:center;border:1px solid var(--border)">
+      <div style="font-size:20px;font-weight:800;color:var(--ink1)">${comKm}</div>
+      <div style="font-size:10px;color:var(--ink3);text-transform:uppercase;font-weight:600">Com KM</div>
+    </div>
+    <div style="background:#fef2f2;border-radius:10px;padding:12px;text-align:center;border:1px solid #fecaca">
+      <div style="font-size:20px;font-weight:800;color:#dc2626">${abaixo}</div>
+      <div style="font-size:10px;color:#dc2626;text-transform:uppercase;font-weight:600">Abaixo do piso</div>
+    </div>
+    <div style="background:#f0fdf4;border-radius:10px;padding:12px;text-align:center;border:1px solid #bbf7d0">
+      <div style="font-size:20px;font-weight:800;color:#16a34a">${ok}</div>
+      <div style="font-size:10px;color:#16a34a;text-transform:uppercase;font-weight:600">Acima do piso</div>
+    </div>
+    <div style="background:#fffbeb;border-radius:10px;padding:12px;text-align:center;border:1px solid #fde68a">
+      <div style="font-size:20px;font-weight:800;color:#d97706">${semKm}</div>
+      <div style="font-size:10px;color:#d97706;text-transform:uppercase;font-weight:600">Sem KM</div>
+    </div>
+    <div style="background:${parseFloat(pctAbaixo)>10?'#fef2f2':'var(--surface)'};border-radius:10px;padding:12px;text-align:center;border:1px solid ${parseFloat(pctAbaixo)>10?'#fecaca':'var(--border)'}">
+      <div style="font-size:20px;font-weight:800;color:${parseFloat(pctAbaixo)>10?'#dc2626':'var(--ink1)'}">${pctAbaixo}%</div>
+      <div style="font-size:10px;color:var(--ink3);text-transform:uppercase;font-weight:600">% abaixo</div>
+    </div>
+    <div style="background:var(--surface);border-radius:10px;padding:12px;text-align:center;border:1px solid var(--border)">
+      <div style="font-size:13px;font-weight:800;color:var(--ink1)">${totalEmitido > 0 ? fmtR(totalEmitido) : '—'}</div>
+      <div style="font-size:10px;color:var(--ink3);text-transform:uppercase;font-weight:600">Total emitido</div>
+    </div>
+    <div style="background:var(--blue-bg);border-radius:10px;padding:12px;text-align:center;border:1px solid var(--blue-border)">
+      <div style="font-size:13px;font-weight:800;color:var(--blue)">${totalPiso > 0 ? fmtR(totalPiso) : '—'}</div>
+      <div style="font-size:10px;color:var(--blue);text-transform:uppercase;font-weight:600">Total mínimo ANTT</div>
+    </div>
+    <div style="background:${totalDiff < 0?'#fef2f2':'#f0fdf4'};border-radius:10px;padding:12px;text-align:center;border:1px solid ${totalDiff < 0?'#fecaca':'#bbf7d0'}">
+      <div style="font-size:13px;font-weight:800;color:${totalDiff < 0?'#dc2626':'#16a34a'}">${totalEmitido > 0 ? (totalDiff >= 0 ? '+' : '') + fmtR(totalDiff) : '—'}</div>
+      <div style="font-size:10px;color:var(--ink3);text-transform:uppercase;font-weight:600">Diferença total</div>
+    </div>
+  `;
+
+  if (!dados.length) {
+    document.getElementById('ctrc-resultado').innerHTML =
+      '<div style="text-align:center;padding:40px;color:var(--ink3)">Nenhum registro para o filtro selecionado.</div>';
+    return;
+  }
+
+  // ── Agrupamento por embarque ────────────────────────────────────────────────
+  const embMap = {}, grupos = [], semEmbarque = [];
+  dados.forEach(d => {
+    if (d.embarque && d.embarque !== '' && d.embarque !== 'undefined') {
+      if (!embMap[d.embarque]) { embMap[d.embarque] = []; grupos.push(d.embarque); }
+      embMap[d.embarque].push(d);
+    } else {
+      semEmbarque.push(d);
+    }
+  });
+
+  // ── Lógica de rota do embarque ───────────────────────────────────────────────
+  // Regra: CT-es com mesma origem E destino → rota única, KM = maior KM informado
+  // CT-es com origens/destinos diferentes → rota sequencial, KM = soma individual
+  function rotaDoEmbarque(ctes) {
+    const origens  = [...new Set(ctes.map(d => `${d.orig}/${d.ufOrig}`))];
+    const destinos = [...new Set(ctes.map(d => `${d.dest}/${d.ufDest}`))];
+    const mesmaRota = origens.length === 1 && destinos.length === 1;
+
+    if (mesmaRota) {
+      const kmRef = Math.max(...ctes.map(d => d.km || 0));
+      return {
+        sequencial: false,
+        desc: `${origens[0]} → ${destinos[0]}`,
+        km: kmRef,
+        // Piso: usa o KM da rota (não soma)
+        pisoTotal: (() => {
+          if (!kmRef) return 0;
+          return ctes.reduce((s, d) => {
+            const p = calcPiso(d.tipoCte || 'geral', d.eixo || 9, kmRef);
+            return s + (p.piso || 0);
+          }, 0);
+        })()
+      };
+    } else {
+      // Rota sequencial: montar cadeia origem → destino → destino...
+      // Ordenar CT-es para formar sequência lógica
+      const sorted = [...ctes].sort((a, b) => {
+        // Tenta encadear: destino do anterior = origem do próximo
+        const aKey = `${a.orig}/${a.ufOrig}`;
+        const bKey = `${b.orig}/${b.ufOrig}`;
+        const aPrevDest = ctes.find(c => `${c.dest}/${c.ufDest}` === aKey);
+        return aPrevDest ? 1 : -1;
+      });
+      const kmTotal = ctes.reduce((s, d) => s + (d.km || 0), 0);
+      // Montar descrição da rota
+      const pontos = [sorted[0].orig + '/' + sorted[0].ufOrig];
+      sorted.forEach(d => pontos.push(d.dest + '/' + d.ufDest));
+      const unique = pontos.filter((v, i, a) => a.indexOf(v) === i);
+      const desc = unique.length <= 3
+        ? unique.join(' → ')
+        : `${unique[0]} → ... → ${unique[unique.length-1]} (${ctes.length} trechos)`;
+
+      return {
+        sequencial: true,
+        desc,
+        km: kmTotal,
+        pisoTotal: ctes.reduce((s, d) => {
+          if (!d.km) return s;
+          const p = calcPiso(d.tipoCte || 'geral', d.eixo || 9, d.km);
+          return s + (p.piso || 0);
+        }, 0)
+      };
+    }
+  }
+
+  const tipoLabel = TIPO_LABEL[tipo] || tipo;
+
+  // ── Thead — 12 colunas que cabem na tela ─────────────────────────────────────
+  const thead = `<thead><tr>
+    <th class="cc-num">CT-e</th>
+    <th class="cc-data">Data</th>
+    <th class="cc-ag">Agência / Emissor</th>
+    <th class="cc-prod">Produto</th>
+    <th class="cc-rota">Rota</th>
+    <th class="cc-eixo">Eix.</th>
+    <th class="cc-km">KM</th>
+    <th class="cc-peso">Peso</th>
+    <th class="cc-emit">Emitido R$</th>
+    <th class="cc-antt">Mín. ANTT R$</th>
+    <th class="cc-diff">Diferença</th>
+    <th class="cc-st">Status</th>
+  </tr></thead>`;
+
+  // ── Render linha CT-e ─────────────────────────────────────────────────────────
+  function renderLinha(d) {
+    const kmStr   = d.km    ? d.km.toLocaleString('pt-BR')+'km'   : '—';
+    const pesoStr = d.pesoKg > 0
+      ? (d.pesoKg/1000).toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1})+'t'
+      : '—';
+    const prodStr = d.produtoCte
+      ? `<span style="font-size:10px" title="${d.produtoCte}">${d.produtoCte.substring(0,16)}</span>`
+      : '<span style="color:var(--ink3)">—</span>';
+    const eixoStr  = d.eixo ? String(d.eixoEf && d.eixoEf!==d.eixo ? d.eixo+'→'+d.eixoEf : d.eixo) : '—';
+    const rota     = `${d.orig}/${d.ufOrig} → ${d.dest}/${d.ufDest}`;
+    const agEm     = `<span style="font-weight:600">${d.agencia}</span>
+                      <span style="display:block;font-size:10px;color:var(--ink3)">${d.emissor.substring(0,18)}</span>`;
+
+    let emitStr='—', minStr='—', diffStr='—', badge='', rowBg='';
+
+    if (d.status === 'semkm') {
+      badge = `<span class="b-warn">Sem KM</span>`;
+    } else if (d.status === 'semtarifa') {
+      minStr = d.piso ? fmtR(d.piso) : '—';
+      badge  = `<span class="b-sem">Sem tarifa</span>`;
+    } else if (d.status === 'ok') {
+      emitStr = fmtR(d.valorEmitido);
+      minStr  = fmtR(d.piso);
+      const dv = d.valorEmitido-d.piso, pct = d.piso?(dv/d.piso*100).toFixed(1):'0';
+      diffStr = `<span class="dv-ok">+${fmtR(dv)}<span class="dv-pct">+${pct}%</span></span>`;
+      badge   = `<span class="b-ok">✓ OK</span>`;
+    } else {
+      emitStr = fmtR(d.valorEmitido);
+      minStr  = fmtR(d.piso);
+      const dv = d.valorEmitido-d.piso, pct = d.piso?(dv/d.piso*100).toFixed(1):'0';
+      diffStr = `<span class="dv-err">${fmtR(dv)}<span class="dv-pct">${pct}%</span></span>`;
+      badge   = `<span class="b-err">✗ Abaixo</span>`;
+      rowBg   = 'background:#fff6f6';
+    }
+
+    return `<tr class="cte-row" style="${rowBg}">
+      <td class="cc-num">${d.ctrc}</td>
+      <td class="cc-data">${d.data.replace(' ','<br>')}</td>
+      <td class="cc-ag">${agEm}</td>
+      <td class="cc-prod">${prodStr}</td>
+      <td class="cc-rota">${rota}</td>
+      <td class="cc-eixo">${eixoStr}</td>
+      <td class="cc-km">${kmStr}</td>
+      <td class="cc-peso">${pesoStr}</td>
+      <td class="cc-emit">${emitStr}</td>
+      <td class="cc-antt">${minStr}</td>
+      <td class="cc-diff">${diffStr}</td>
+      <td class="cc-st">${badge}</td>
+    </tr>`;
+  }
+
+  let rows = '';
+
+  // ── Embarques agrupados ───────────────────────────────────────────────────────
+  grupos.forEach(emb => {
+    const ctes  = embMap[emb];
+    const rota  = rotaDoEmbarque(ctes);
+    const pesoT = ctes.reduce((s,d)=>s+(d.pesoKg||0),0);
+    const emitT = ctes.reduce((s,d)=>s+(d.valorEmitido||0),0);
+    const pisoT = rota.pisoTotal;
+    const diffT = emitT - pisoT;
+    const st = ctes.every(d=>d.status==='ok') ? 'ok'
+             : ctes.some(d=>d.status==='abaixo') ? 'abaixo' : 'parcial';
+    const cor = st==='ok'?'#16a34a':st==='abaixo'?'#dc2626':'#d97706';
+    const bg  = st==='ok'?'#f0fdf4':st==='abaixo'?'#fff0f0':'#fffbeb';
+    const bdg = st==='ok'?'<span class="b-ok">✓ OK</span>'
+              : st==='abaixo'?'<span class="b-err">✗ Abaixo</span>'
+              : '<span class="b-warn">⚠ Parcial</span>';
+
+    rows += `<tr>
+      <td colspan="12" style="padding:0;border-top:3px solid ${cor}">
+        <div class="emb-faixa" style="background:${bg};color:${cor}">
+          <span class="emb-faixa-num">${emb.replace('EMBARQUE ','Emb. #')}</span>
+          <span class="emb-faixa-info">${ctes.length} CT-e${ctes.length>1?'s':''}</span>
+          ${rota.sequencial?'<span class="b-seq">seq.</span>':''}
+          <span class="emb-faixa-rota" style="color:var(--ink2)">${rota.desc}</span>
+          <div class="emb-faixa-vals">
+            <div class="emb-faixa-val">
+              <small>KM</small>
+              <span style="color:var(--ink2)">${rota.km>0?rota.km.toLocaleString('pt-BR')+'km':'—'}</span>
+            </div>
+            <div class="emb-faixa-val">
+              <small>Peso</small>
+              <span style="color:var(--ink2)">${(pesoT/1000).toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1})}t</span>
+            </div>
+            <div class="emb-faixa-val">
+              <small>Emitido</small>
+              <span style="color:var(--ink1);font-weight:700">${emitT>0?fmtR(emitT):'—'}</span>
+            </div>
+            <div class="emb-faixa-val">
+              <small>Mín. ANTT</small>
+              <span style="color:var(--blue);font-weight:700">${pisoT>0?fmtR(pisoT):'—'}</span>
+            </div>
+            <div class="emb-faixa-val">
+              <small>Diferença</small>
+              <span style="color:${cor};font-weight:800">${emitT>0?(diffT>=0?'+':'')+fmtR(diffT):'—'}</span>
+            </div>
+            <div class="emb-faixa-val">${bdg}</div>
+          </div>
+        </div>
+      </td>
+    </tr>`;
+
+    ctes.forEach(d => { rows += renderLinha(d); });
+    rows += `<tr><td colspan="12" style="height:4px;background:var(--bg);padding:0"></td></tr>`;
+  });
+
+  semEmbarque.forEach(d => { rows += renderLinha(d); });
+
+  const _tipoMap = { todos:'📦 Todos', geral:'📦 Carga Geral', granelSolido:'🌾 Granel Sólido',
+    granelLiquido:'💧 Granel Líquido', frigorificada:'❄️ Frigorificada', conteinerizada:'🚢 Conteinerizada' };
+  const tipoBadge = _tipoMap[tipo] || '📦 Todos';
+
+  document.getElementById('ctrc-resultado').innerHTML = `
+    <div style="background:var(--surface);border-radius:12px;border:1px solid var(--border);overflow:hidden">
+      <div style="padding:10px 14px;background:#f8f9fa;border-bottom:2px solid var(--border);
+                  display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <span style="font-size:13px;font-weight:700;color:var(--ink1)">
+          ${filtrado} de ${total} registros
+        </span>
+        <span style="background:var(--ink);color:white;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700">
+          ${tipoBadge}
+        </span>
+        ${grupos.length>0?`<span style="font-size:11px;background:#e0f2fe;color:#0369a1;padding:2px 8px;border-radius:20px;font-weight:700">${grupos.length} embarques</span>`:''}
+        <span style="margin-left:auto;font-size:10px;color:var(--ink3)">
+          Piso calculado pelo tipo de cada CT-e
+        </span>
+      </div>
+      <table class="ctrc-table">
+        ${thead}
+        <tbody>${rows}</tbody>
+      </table>
+    </div>
+  `;
+}
+
+
+function ctrcExportarExcel() {
+  if (!ctrcDados.length) return;
+  const tipo = document.getElementById('ctrc-tipo').value;
+  const tipoLabel = { granelSolido:'Granel Sólido', geral:'Carga Geral', granelLiquido:'Granel Líquido', frigorificada:'Frigorificada', neogranel:'Neogranel', conteinerizada:'Conteinerizada' }[tipo];
+
+  const wsData = [
+    ['Embarque','CT-e','Data','Agência','Emissor','Produto','Unidade','Tipo Carga','Origem','UF Orig','Destino','UF Dest','Eixos','Eixo Ref.','KM','Peso (t)','Tarifa Paga R$/t','Tarifa Mín. ANTT R$/t','Dif. Tarifa R$/t','% Dif. Tarifa','Valor Emitido R$','Mínimo ANTT R$','Dif. Valor R$','Status'],
+  ];
+  ctrcDados.forEach(d => {
+    wsData.push([
+      d.ctrc, d.data, d.agencia, d.emissor,
+      d.embarque || '', d.produtoCte || '', d.unidadeCte || '',
+      document.getElementById('ctrc-tipo') ? (document.getElementById('ctrc-tipo').options[document.getElementById('ctrc-tipo').selectedIndex]?.text || tipo) : tipo,
+      d.orig, d.ufOrig, d.dest, d.ufDest,
+      d.eixo, d.eixoEf || '',
+      d.km || '',
+      d.pesoKg > 0 ? parseFloat((d.pesoKg/1000).toFixed(3)) : '',
+      d.tarifaPaga || '',
+      d.tarifaAntt !== null ? d.tarifaAntt : '',
+      d.diffTarifa !== null ? parseFloat(d.diffTarifa.toFixed(2)) : '',
+      d.diffTarifa !== null && d.tarifaAntt ? parseFloat((d.diffTarifa/d.tarifaAntt*100).toFixed(1)) : '',
+      d.valorEmitido !== null ? d.valorEmitido : '',
+      d.piso !== null ? d.piso : '',
+      d.valorEmitido !== null && d.piso !== null ? parseFloat((d.valorEmitido - d.piso).toFixed(2)) : '',
+      d.status === 'ok' ? 'Acima do piso' : d.status === 'abaixo' ? 'Abaixo do piso' : d.status === 'semtarifa' ? 'Sem tarifa' : 'Sem KM',
+      tipoLabel,
+    ]);
+  });
+
+  const wb = XLSX.utils.book_new();
+  const ws = XLSX.utils.aoa_to_sheet(wsData);
+
+  // Larguras
+  ws['!cols'] = [
+    {wch:8},{wch:16},{wch:22},{wch:30},
+    {wch:18},{wch:6},{wch:18},{wch:6},
+    {wch:6},{wch:8},{wch:8},
+    {wch:16},{wch:14},{wch:14},{wch:10},{wch:16},{wch:16},
+  ];
+
+  XLSX.utils.book_append_sheet(wb, ws, 'Validação CTRC');
+  const data = new Date().toISOString().slice(0,10).replace(/-/g,'');
+  XLSX.writeFile(wb, `validacao_ctrc_${data}.xlsx`);
+}
+
+// ─── GEOCODING KM FALTANTE (CTRC) ────────────────────────────────────────────
+async function ctrcCalcularKmFaltante() {
+  const semKm = ctrcDados.filter(d => d.status === 'semkm');
+  if (!semKm.length) return;
+
+  const btn = document.getElementById('ctrcBtnGeocode');
+  btn.disabled = true;
+
+  const res = document.getElementById('ctrc-resultado');
+  const total = semKm.length;
+  let ok = 0, falhou = 0;
+
+  // Barra de progresso
+  const progDiv = document.createElement('div');
+  progDiv.style.cssText = 'background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:12px';
+  progDiv.innerHTML = `
+    <div style="font-size:13px;font-weight:700;color:var(--ink1);margin-bottom:8px">
+      📍 Calculando KM via geocoding... <span id="ctrc-geo-cnt">0/${total}</span>
+    </div>
+    <div style="background:var(--bg);border-radius:6px;height:8px;overflow:hidden">
+      <div id="ctrc-geo-bar" style="height:8px;background:var(--blue);border-radius:6px;width:0%;transition:width .3s"></div>
+    </div>
+    <div id="ctrc-geo-sub" style="font-size:11px;color:var(--ink3);margin-top:6px">Iniciando...</div>
+  `;
+  res.prepend(progDiv);
+
+  for (let i = 0; i < semKm.length; i++) {
+    const d = semKm[i];
+    document.getElementById('ctrc-geo-cnt').textContent = `${i+1}/${total}`;
+    document.getElementById('ctrc-geo-bar').style.width = ((i+1)/total*100) + '%';
+    document.getElementById('ctrc-geo-sub').textContent = `${d.orig}/${d.ufOrig} → ${d.dest}/${d.ufDest}`;
+
+    try {
+      const g1 = await geocode(d.orig, d.ufOrig, '');
+      const g2 = await geocode(d.dest, d.ufDest, '');
+
+      if (g1 && g2) {
+        let km = await rotaOSRM(g1.lat, g1.lon, g2.lat, g2.lon);
+        if (!km) km = haversine(g1.lat, g1.lon, g2.lat, g2.lon);
+        km = Math.round(km);
+
+        // Atualizar registro
+        d.km    = km;
+        d.kmSrc = 'geocoded';
+        const tipo = document.getElementById('ctrc-tipo').value;
+        const calc = calcPiso(tipo, d.eixo, km);
+        d.piso   = calc.piso;
+        d.eixoEf = calc.eixoEf;
+        d.diff   = d.frete - d.piso;
+        d.status = d.diff >= 0 ? 'ok' : 'abaixo';
+        ok++;
+      } else {
+        falhou++;
+      }
+    } catch(e) {
+      falhou++;
+    }
+
+    // Pequena pausa para não sobrecarregar Nominatim
+    await new Promise(r => setTimeout(r, 200));
+  }
+
+  progDiv.innerHTML = `
+    <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:4px">
+      ✓ Geocoding concluído: ${ok} calculados, ${falhou} não encontrados
+    </div>
+    <div style="font-size:11px;color:var(--ink3)">KM calculado via OSRM (rota real) ou haversine ×1,27 como fallback.</div>
+  `;
+
+  // Atualizar botões
+  const semKmRestante = ctrcDados.filter(d => d.status === 'semkm').length;
+  if (semKmRestante === 0) {
+    btn.style.display = 'none';
+  } else {
+    btn.textContent = `📍 Calcular KM faltante (${semKmRestante})`;
+    btn.disabled = false;
+  }
+
+  ctrcRenderTabela();
+}
+
+// ─── PARADAS INTERMEDIÁRIAS ───────────────────────────────────────────────────
+let _paradasCount = 0;
+
+function adicionarParada(cidade, uf) {
+  _paradasCount++;
+  const id = _paradasCount;
+  const wrap = document.getElementById('cot-paradas-wrap');
+  const div = document.createElement('div');
+  div.id = `parada-row-${id}`;
+  div.style.cssText = 'display:flex;align-items:center;gap:8px;margin-bottom:8px';
+  const letra = String.fromCharCode(65 + 1 + (wrap.children.length)); // B, C, D...
+  const valorCidade = (cidade && uf) ? `${cidade}/${uf}` : '';
+  div.innerHTML = `
+    <div style="width:28px;height:28px;background:#7c3aed;border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:12px;flex-shrink:0;margin-top:6px" class="parada-badge">${letra}</div>
+    <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:8px;min-width:0" class="cot-ponto-grid">
+      <input type="text" class="parada-cidade" placeholder="Parada — CIDADE/UF ou coordenadas"
+        style="text-transform:uppercase;padding:8px 10px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;background:var(--white);min-width:0;width:100%;box-sizing:border-box"
+        value="${valorCidade}">
+      <input type="text" class="parada-end" placeholder="Endereço (opcional)"
+        style="text-transform:uppercase;padding:8px 10px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;background:var(--white);min-width:0;width:100%;box-sizing:border-box">
+    </div>
+    <button onclick="removerParada(${id})" title="Remover parada"
+      style="width:32px;height:32px;background:#fee2e2;border:none;border-radius:50%;font-size:16px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#dc2626;font-weight:700;margin-top:4px">✕</button>
+  `;
+  wrap.appendChild(div);
+  atualizarBadgesParadas();
+}
+
+function removerParada(id) {
+  const el = document.getElementById(`parada-row-${id}`);
+  if (el) el.remove();
+  atualizarBadgesParadas();
+}
+
+function atualizarBadgesParadas() {
+  const wrap = document.getElementById('cot-paradas-wrap');
+  const rows = wrap.querySelectorAll('[id^="parada-row-"]');
+  rows.forEach((row, i) => {
+    const badge = row.querySelector('.parada-badge');
+    if (badge) badge.textContent = String.fromCharCode(66 + i); // B, C, D...
+  });
+  // Atualiza badge do destino
+  const totalParadas = rows.length;
+  const destBadge = document.getElementById('cot-dest-badge');
+  if (destBadge) destBadge.textContent = String.fromCharCode(66 + totalParadas);
+}
+
+function getPontosCotacao() {
+  // Retorna array de { cidade, end } com todos os pontos: origem + paradas + destino
+  const pontos = [];
+  const orig = document.getElementById('cot-orig').value.trim();
+  const origEnd = document.getElementById('cot-orig-end').value.trim();
+  if (orig) pontos.push({ str: orig, end: origEnd });
+
+  document.querySelectorAll('#cot-paradas-wrap [id^="parada-row-"]').forEach(row => {
+    const cidade = row.querySelector('.parada-cidade').value.trim();
+    const end = row.querySelector('.parada-end').value.trim();
+    if (cidade) pontos.push({ str: cidade, end });
+  });
+
+  const dest = document.getElementById('cot-dest').value.trim();
+  const destEnd = document.getElementById('cot-dest-end').value.trim();
+  if (dest) pontos.push({ str: dest, end: destEnd });
+
+  return pontos;
+}
+
+// ─── OSRM MULTI-WAYPOINT ─────────────────────────────────────────────────────
+async function rotaOSRMMulti(geopontos) {
+  if (geopontos.length < 2) return null;
+  const coords = geopontos.map(g => `${g.lon},${g.lat}`).join(';');
+  const url = `https://router.project-osrm.org/route/v1/driving/${coords}?overview=full&geometries=geojson`;
+  // Tenta até 2 vezes com timeout de 15s
+  for (let tentativa = 0; tentativa < 2; tentativa++) {
+    try {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), 15000);
+      const r = await fetch(url, { signal: controller.signal });
+      clearTimeout(timer);
+      const d = await r.json();
+      if (d.code === 'Ok') {
+        return {
+          km: Math.round(d.routes[0].distance / 100) / 10,
+          geojson: d.routes[0].geometry
+        };
+      }
+    } catch (e) {
+      if (tentativa === 0) await new Promise(res => setTimeout(res, 1000)); // aguarda 1s antes de retry
+    }
+  }
+  return null;
+}
+
+// ─── ROTEIRIZADOR UNIFICADO ─────────────────────────────────────────────────
+let _rotMapa = null;
+let _rotPontos = [];
+let _rotMarkers = [];
+let _rotLine = null;
+let _rotModoVer = false;  // true = aberto por "Ver no mapa" (mostra rota calculada)
+
+function rotGetLetra(i) { return String.fromCharCode(65 + i); }
+
+function rotGetCor(i, total) {
+  if (i === 0) return '#2563eb';
+  if (i === total - 1) return '#dc2626';
+  return '#7c3aed';
+}
+
+function rotMkIcon(letra, cor, draggable) {
+  return L.divIcon({
+    html: `<div style="background:${cor};color:white;border-radius:50% 50% 50% 0;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;transform:rotate(-45deg);box-shadow:0 2px 8px rgba(0,0,0,.35)"><span style="transform:rotate(45deg)">${letra}</span></div>`,
+    className: '', iconSize: [30,30], iconAnchor: [15,30]
+  });
+}
+
+async function _rotCarregarLeaflet() {
+  if (window.L) return;
+  await new Promise(resolve => {
+    const css = document.createElement('link');
+    css.rel = 'stylesheet';
+    css.href = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css';
+    document.head.appendChild(css);
+    const s = document.createElement('script');
+    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js';
+    s.onload = resolve;
+    document.head.appendChild(s);
+  });
+}
+
+// Abre o roteirizador vazio (botão "Selecionar no mapa")
+async function abrirRoteirizador() {
+  _rotModoVer = false;
+  document.getElementById('rot-titulo').textContent = '🗺️ Roteirizador — monte sua rota';
+  document.getElementById('rot-btn-confirmar').textContent = '✓ Confirmar e calcular';
+  await _rotInicializar([]);
+}
+
+// Abre o roteirizador com a rota já calculada (botão "Ver no mapa")
+async function abrirMapa() {
+  const ctx = window._cotacaoContexto;
+  const temPontos = ctx && ((ctx.geopontos && ctx.geopontos.length >= 2) || (ctx.g1 && ctx.g2));
+
+  if (!temPontos) {
+    // Abre vazio para o usuário montar a rota
+    _rotModoVer = false;
+    document.getElementById('rot-titulo').textContent = '🗺️ Roteirizador — monte sua rota';
+    document.getElementById('rot-btn-confirmar').textContent = '✓ Confirmar e calcular';
+    await _rotInicializar([]);
+    return;
+  }
+
+  _rotModoVer = true;
+  document.getElementById('rot-titulo').textContent = '🗺️ Rota calculada — edite se necessário';
+  document.getElementById('rot-btn-confirmar').textContent = '✓ Recalcular com esta rota';
+
+  // Monta pontos a partir do contexto
+  const pontos = ctx.geopontos && ctx.geopontos.length >= 2
+    ? ctx.geopontos.map(g => ({ lat: g.lat, lon: g.lon, nome: g.label || `${g.lat.toFixed(4)},${g.lon.toFixed(4)}` }))
+    : [
+        { lat: ctx.g1.lat, lon: ctx.g1.lon, nome: ctx.origStr || `${ctx.g1.lat.toFixed(4)},${ctx.g1.lon.toFixed(4)}` },
+        { lat: ctx.g2.lat, lon: ctx.g2.lon, nome: ctx.destStr || `${ctx.g2.lat.toFixed(4)},${ctx.g2.lon.toFixed(4)}` },
+      ];
+
+  await _rotInicializar(pontos);
+}
+
+async function _rotInicializar(pontos) {
+  document.getElementById('rot-overlay').classList.add('aberto');
+  document.getElementById('rot-instrucao').textContent = 'Carregando mapa...';
+  document.getElementById('rot-busca').value = '';
+  document.getElementById('rot-busca-status').textContent = '';
+
+  await _rotCarregarLeaflet();
+
+  if (_rotMapa) { _rotMapa.remove(); _rotMapa = null; }
+  document.getElementById('rot-mapa-leaflet').innerHTML = '';
+  _rotPontos = [...pontos];
+  _rotMarkers = [];
+  _rotLine = null;
+
+  const map = L.map('rot-mapa-leaflet', { center: [-15.8, -47.9], zoom: 4 });
+  _rotMapa = map;
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap', maxZoom: 18
+  }).addTo(map);
+
+  map.on('click', async function(e) {
+    rotFecharSugestoes();
+    await rotAdicionarPontoLatLon(e.latlng.lat, e.latlng.lng);
+  });
+
+  // Fechar sugestões ao clicar fora
+  document.addEventListener('click', function rotClickFora(e) {
+    if (!e.target.closest('#rot-busca') && !e.target.closest('#rot-sugestoes')) {
+      rotFecharSugestoes();
+    }
+  }, { once: false });
+
+  setTimeout(() => map.invalidateSize(), 200);
+
+  if (_rotPontos.length >= 1) {
+    rotDesenharMarcadores();
+    if (_rotPontos.length >= 2) await rotDesenharRota();
+    else map.setView([_rotPontos[0].lat, _rotPontos[0].lon], 8);
+  }
+
+  rotAtualizarLista();
+
+  if (_rotPontos.length >= 2) {
+    document.getElementById('rot-instrucao').textContent = 'Clique no mapa para adicionar paradas · Arraste marcadores para ajustar';
+  } else {
+    document.getElementById('rot-instrucao').textContent = 'Clique no mapa ou busque uma cidade para adicionar pontos';
+  }
+}
+
+// Busca por texto (campo de busca)
+async function rotBuscar() {
+  const val = document.getElementById('rot-busca').value.trim();
+  const status = document.getElementById('rot-busca-status');
+  if (!val) return;
+
+  status.textContent = 'Buscando...';
+
+  // Tenta coordenadas diretas
+  const coordMatch = val.match(/^(-?\d+(?:[.,]\d+)?)\s*[,;]\s*(-?\d+(?:[.,]\d+)?)$/);
+  if (coordMatch) {
+    const lat = parseFloat(coordMatch[1].replace(',','.'));
+    const lon = parseFloat(coordMatch[2].replace(',','.'));
+    if (lat >= -90 && lat <= 90 && lon >= -180 && lon <= 180) {
+      await rotAdicionarPontoLatLon(lat, lon);
+      document.getElementById('rot-busca').value = '';
+      status.textContent = '';
+      return;
+    }
+  }
+
+  // Tenta geocoding
+  try {
+    const g = await resolverPonto(val, '');
+    if (g) {
+      _rotPontos.push({ lat: g.lat, lon: g.lon, nome: val.toUpperCase() });
+      rotDesenharMarcadores();
+      await rotDesenharRota();
+      rotAtualizarLista();
+      _rotMapa.setView([g.lat, g.lon], 10);
+      document.getElementById('rot-busca').value = '';
+      status.textContent = `✓ ${val.toUpperCase()} adicionado`;
+      setTimeout(() => status.textContent = '', 2500);
+    } else {
+      status.textContent = `⚠ Não encontrado: ${val}. Tente CIDADE/UF ou coordenadas.`;
+    }
+  } catch {
+    status.textContent = '⚠ Erro ao buscar. Tente novamente.';
+  }
+}
+
+async function rotAdicionarPontoLatLon(lat, lon) {
+  let nome = `${lat.toFixed(4)}, ${lon.toFixed(4)}`;
+  try {
+    const r = await fetch(
+      `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=10`,
+      { headers: { 'Accept-Language': 'pt-BR' } }
+    );
+    const d = await r.json();
+    const cidade = d.address?.city || d.address?.town || d.address?.village || d.address?.municipality || '';
+    const estado = d.address?.state_code || d.address?.state || '';
+    if (cidade) nome = `${cidade.toUpperCase()}${estado ? '/'+estado.toUpperCase() : ''}`;
+  } catch {}
+
+  _rotPontos.push({ lat, lon, nome });
+  rotDesenharMarcadores();
+  if (_rotPontos.length >= 2) await rotDesenharRota();
+  rotAtualizarLista();
+  document.getElementById('rot-instrucao').textContent =
+    _rotPontos.length >= 2
+      ? 'Clique para adicionar mais paradas · Arraste marcadores para ajustar'
+      : 'Continue clicando para adicionar o destino';
+}
+
+function rotDesenharMarcadores() {
+  _rotMarkers.forEach(m => m.remove());
+  _rotMarkers = [];
+  const total = _rotPontos.length;
+  _rotPontos.forEach((p, i) => {
+    const letra = rotGetLetra(i);
+    const cor   = rotGetCor(i, total);
+    const tipo  = i === 0 ? 'Origem' : i === total-1 ? 'Destino' : `Parada ${i}`;
+    const mk = L.marker([p.lat, p.lon], { icon: rotMkIcon(letra, cor), draggable: true })
+      .addTo(_rotMapa)
+      .bindPopup(`<b>${tipo}</b><br>${p.nome}<br><small style="color:#999">Arraste para ajustar</small>`);
+
+    mk.on('dragend', async function(e) {
+      const ll = e.target.getLatLng();
+      _rotPontos[i].lat = ll.lat;
+      _rotPontos[i].lon = ll.lng;
+      try {
+        const r = await fetch(
+          `https://nominatim.openstreetmap.org/reverse?format=json&lat=${ll.lat}&lon=${ll.lng}&zoom=10`,
+          { headers: { 'Accept-Language': 'pt-BR' } }
+        );
+        const d = await r.json();
+        const cidade = d.address?.city || d.address?.town || d.address?.village || '';
+        const estado = d.address?.state_code || '';
+        if (cidade) _rotPontos[i].nome = `${cidade.toUpperCase()}${estado ? '/'+estado.toUpperCase() : ''}`;
+      } catch {}
+      rotDesenharMarcadores();
+      await rotDesenharRota();
+      rotAtualizarLista();
+    });
+    _rotMarkers.push(mk);
+  });
+}
+
+async function rotDesenharRota() {
+  if (_rotLine) { _rotLine.remove(); _rotLine = null; }
+  if (_rotPontos.length < 2) return;
+
+  document.getElementById('rot-instrucao').textContent = '⏳ Calculando rota real via OpenStreetMap...';
+  const result = await rotaOSRMMulti(_rotPontos.map(p => ({ lat: p.lat, lon: p.lon })));
+  if (result) {
+    _rotLine = L.geoJSON(result.geojson, {
+      style: { color: '#2563eb', weight: 5, opacity: .85 }
+    }).addTo(_rotMapa);
+    _rotMapa.fitBounds(_rotLine.getBounds(), { padding: [40, 40] });
+    const nParadas = _rotPontos.length - 2;
+    const ps = nParadas > 0 ? ` · ${nParadas} parada${nParadas > 1 ? 's' : ''}` : '';
+    document.getElementById('rot-instrucao').textContent =
+      `${result.km.toLocaleString('pt-BR')}km${ps} · Clique para adicionar mais pontos`;
+  } else {
+    const coords = _rotPontos.map(p => [p.lat, p.lon]);
+    _rotLine = L.polyline(coords, { color: '#2563eb', weight: 3, dashArray: '8 6', opacity: .7 }).addTo(_rotMapa);
+    _rotMapa.fitBounds(L.latLngBounds(coords), { padding: [50, 50] });
+    document.getElementById('rot-instrucao').textContent = 'Distância estimada (OSRM indisponível)';
+  }
+}
+
+function rotAtualizarLista() {
+  const lista = document.getElementById('rot-pontos-lista');
+  const btnConf = document.getElementById('rot-btn-confirmar');
+  const total = _rotPontos.length;
+
+  if (!total) {
+    lista.innerHTML = `<div style="color:var(--ink3);font-size:12px;text-align:center;padding:24px 8px;line-height:1.8">
+      <div style="font-size:24px;margin-bottom:8px">📍</div>
+      <b>Clique no mapa</b> para marcar pontos<br>ou use o campo de busca acima<br><br>
+      <small>1º ponto = Origem<br>Pontos seguintes = Paradas / Destino</small>
+    </div>`;
+    btnConf.disabled = true;
+    btnConf.style.opacity = '.5';
+    btnConf.style.cursor = 'not-allowed';
+    return;
+  }
+
+  lista.innerHTML = _rotPontos.map((p, i) => {
+    const letra = rotGetLetra(i);
+    const cor   = rotGetCor(i, total);
+    const tipo  = i === 0 ? 'Origem' : i === total-1 ? 'Destino' : `Parada ${i}`;
+    return `<div style="display:flex;align-items:flex-start;gap:8px;padding:8px 4px;border-bottom:1px solid var(--border)">
+      <div style="width:24px;height:24px;background:${cor};border-radius:50%;display:flex;align-items:center;justify-content:center;color:white;font-size:11px;font-weight:700;flex-shrink:0;margin-top:2px">${letra}</div>
+      <div style="flex:1;min-width:0">
+        <div style="font-size:10px;text-transform:uppercase;color:var(--ink3);font-weight:700">${tipo}</div>
+        <div style="font-size:12px;font-weight:600;color:var(--ink1);word-break:break-word">${p.nome}</div>
+        <div style="font-size:10px;color:var(--ink3)">${p.lat.toFixed(4)}, ${p.lon.toFixed(4)}</div>
+      </div>
+      <button onclick="rotRemoverPonto(${i})" title="Remover"
+        style="width:22px;height:22px;background:#fee2e2;border:none;border-radius:50%;cursor:pointer;font-size:11px;color:#dc2626;flex-shrink:0;display:flex;align-items:center;justify-content:center;padding:0;font-weight:700;margin-top:2px">✕</button>
+    </div>`;
+  }).join('');
+
+  const ok = total >= 2;
+  btnConf.disabled = !ok;
+  btnConf.style.opacity = ok ? '1' : '.5';
+  btnConf.style.cursor = ok ? 'pointer' : 'not-allowed';
+}
+
+async function rotRemoverPonto(i) {
+  _rotPontos.splice(i, 1);
+  rotDesenharMarcadores();
+  if (_rotPontos.length >= 2) await rotDesenharRota();
+  else if (_rotLine) { _rotLine.remove(); _rotLine = null; }
+  rotAtualizarLista();
+}
+
+function rotLimpar() {
+  _rotPontos = [];
+  _rotMarkers.forEach(m => m.remove());
+  _rotMarkers = [];
+  if (_rotLine) { _rotLine.remove(); _rotLine = null; }
+  rotAtualizarLista();
+  document.getElementById('rot-instrucao').textContent = 'Clique no mapa ou busque uma cidade para adicionar pontos';
+}
+
+async function rotConfirmar() {
+  if (_rotPontos.length < 2) return;
+
+  // Limpar paradas existentes
+  document.getElementById('cot-paradas-wrap').innerHTML = '';
+  _paradasCount = 0;
+
+  // Origem
+  document.getElementById('cot-orig').value = _rotPontos[0].nome;
+  document.getElementById('cot-orig-end').value = '';
+
+  // Paradas intermediárias
+  for (let i = 1; i < _rotPontos.length - 1; i++) {
+    adicionarParada();
+    const rows = document.querySelectorAll('#cot-paradas-wrap [id^="parada-row-"]');
+    const last = rows[rows.length - 1];
+    if (last) last.querySelector('.parada-cidade').value = _rotPontos[i].nome;
+  }
+
+  // Destino
+  document.getElementById('cot-dest').value = _rotPontos[_rotPontos.length - 1].nome;
+  document.getElementById('cot-dest-end').value = '';
+  atualizarBadgesParadas();
+
+  // Calcular KM via OSRM e preencher
+  const result = await rotaOSRMMulti(_rotPontos.map(p => ({ lat: p.lat, lon: p.lon })));
+  if (result) {
+    document.getElementById('cot-km').value = Math.round(result.km);
+  } else {
+    document.getElementById('cot-km').value = '';
+  }
+
+  // Salvar geopontos no contexto para "Ver no mapa" funcionar imediatamente
+  window._cotacaoContexto = {
+    ...(window._cotacaoContexto || {}),
+    g1: _rotPontos[0],
+    g2: _rotPontos[_rotPontos.length - 1],
+    geopontos: _rotPontos.map(p => ({ lat: p.lat, lon: p.lon, label: p.nome })),
+    origStr: _rotPontos[0].nome,
+    destStr: _rotPontos[_rotPontos.length - 1].nome,
+    origEnd: '', destEnd: '',
+    km: result ? result.km : null,
+  };
+
+  rotFechar();
+  await calcularCotacao();
+}
+
+function rotFechar() {
+  document.getElementById('rot-overlay').classList.remove('aberto');
+}
+
+function rotFecharOverlay(e) {
+  if (e.target === document.getElementById('rot-overlay')) rotFechar();
+}
+
+// ─── AUTOCOMPLETE DO ROTEIRIZADOR ────────────────────────────────────────────
+let _rotSugTimer = null;
+let _rotSugIndex = -1;
+let _rotSugItems = [];
+
+function rotBuscaKeydown(e) {
+  const lista = document.getElementById('rot-sugestoes');
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    if (_rotSugIndex >= 0 && _rotSugItems[_rotSugIndex]) {
+      rotSelecionarSugestao(_rotSugItems[_rotSugIndex]);
+    } else {
+      rotBuscar();
+    }
+    return;
+  }
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    _rotSugIndex = Math.min(_rotSugIndex + 1, _rotSugItems.length - 1);
+    rotHighlightSugestao();
+    return;
+  }
+  if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    _rotSugIndex = Math.max(_rotSugIndex - 1, -1);
+    rotHighlightSugestao();
+    return;
+  }
+  if (e.key === 'Escape') {
+    rotFecharSugestoes();
+    return;
+  }
+}
+
+function rotBuscaInput(val) {
+  clearTimeout(_rotSugTimer);
+  if (val.length < 2) { rotFecharSugestoes(); return; }
+  // Não busca se parecer coordenada
+  if (/^-?\d+[.,]/.test(val)) { rotFecharSugestoes(); return; }
+  _rotSugTimer = setTimeout(() => rotBuscarSugestoes(val), 350);
+}
+
+async function rotBuscarSugestoes(q) {
+  try {
+    // 1. Busca na base local primeiro
+    const localResults = rotBuscarLocal(q);
+
+    // 2. Nominatim para complementar
+    const r = await fetch(
+      `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(q + ' Brasil')}&limit=6&countrycodes=br&featuretype=city`,
+      { headers: { 'Accept-Language': 'pt-BR' } }
+    );
+    const nominatim = await r.json();
+    const nominatimResults = nominatim
+      .filter(d => d.type === 'city' || d.type === 'town' || d.type === 'village' || d.type === 'administrative' || d.type === 'municipality')
+      .map(d => {
+        // Extrai nome/estado
+        const parts = d.display_name.split(',');
+        const cidade = parts[0].trim();
+        // Tenta pegar UF (2 letras) de algum segmento
+        const ufMatch = d.display_name.match(/([A-Z]{2})/);
+        const uf = ufMatch ? ufMatch[1] : '';
+        return {
+          nome: uf ? `${cidade.toUpperCase()}/${uf}` : cidade.toUpperCase(),
+          lat: parseFloat(d.lat),
+          lon: parseFloat(d.lon),
+          src: 'nominatim'
+        };
+      });
+
+    // Mescla — locais primeiro, sem duplicatas
+    const todos = [...localResults];
+    nominatimResults.forEach(n => {
+      if (!todos.some(l => l.nome === n.nome)) todos.push(n);
+    });
+
+    _rotSugItems = todos.slice(0, 8);
+    _rotSugIndex = -1;
+    rotRenderSugestoes();
+  } catch {
+    // Só local se Nominatim falhar
+    _rotSugItems = rotBuscarLocal(q).slice(0, 8);
+    _rotSugIndex = -1;
+    rotRenderSugestoes();
+  }
+}
+
+function rotBuscarLocal(q) {
+  // Chave formato: 'CIDADE|UF' ex: 'MARAU|RS'
+  const upper = q.toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  const results = [];
+  for (const [key, coords] of Object.entries(CIDADES_BR)) {
+    const norm = key.normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+    const [cidade, uf] = norm.split('|');
+    if (cidade && cidade.includes(upper)) {
+      const [cidadeOrig] = key.split('|');
+      results.push({
+        nome: `${cidadeOrig}/${uf}`,
+        lat: coords[0],
+        lon: coords[1],
+        src: 'local'
+      });
+    }
+    if (results.length >= 8) break;
+  }
+  return results;
+}
+
+function rotRenderSugestoes() {
+  const el = document.getElementById('rot-sugestoes');
+  if (!_rotSugItems.length) { el.style.display = 'none'; return; }
+  el.style.display = 'block';
+  el.innerHTML = _rotSugItems.map((item, i) => `
+    <div class="rot-sug-item" data-i="${i}"
+      style="padding:10px 14px;cursor:pointer;font-size:13px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px"
+      onmousedown="rotSelecionarSugestao(${JSON.stringify(item).replace(/"/g,'&quot;')})"
+      onmouseover="rotHighlightSugestaoIdx(${i})">
+      <span style="font-size:14px">${item.src === 'local' ? '📍' : '🔍'}</span>
+      <div>
+        <div style="font-weight:600">${item.nome}</div>
+        <div style="font-size:10px;color:var(--ink3)">${item.lat.toFixed(4)}, ${item.lon.toFixed(4)}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function rotHighlightSugestao() {
+  const items = document.querySelectorAll('.rot-sug-item');
+  items.forEach((el, i) => {
+    el.style.background = i === _rotSugIndex ? 'var(--bg)' : '';
+  });
+  if (_rotSugIndex >= 0 && _rotSugItems[_rotSugIndex]) {
+    document.getElementById('rot-busca').value = _rotSugItems[_rotSugIndex].nome;
+  }
+}
+
+function rotHighlightSugestaoIdx(i) {
+  _rotSugIndex = i;
+  rotHighlightSugestao();
+}
+
+async function rotSelecionarSugestao(item) {
+  document.getElementById('rot-busca').value = '';
+  rotFecharSugestoes();
+  _rotPontos.push({ lat: item.lat, lon: item.lon, nome: item.nome });
+  rotDesenharMarcadores();
+  if (_rotPontos.length >= 2) await rotDesenharRota();
+  else _rotMapa.setView([item.lat, item.lon], 10);
+  rotAtualizarLista();
+  document.getElementById('rot-busca-status').textContent = `✓ ${item.nome} adicionado`;
+  setTimeout(() => document.getElementById('rot-busca-status').textContent = '', 2000);
+}
+
+function rotFecharSugestoes() {
+  document.getElementById('rot-sugestoes').style.display = 'none';
+  _rotSugItems = [];
+  _rotSugIndex = -1;
+}
+
+// ─── AUTOCOMPLETE CAMPOS COTAÇÃO ─────────────────────────────────────────────
+const _cotSugTimers = {};
+const _cotSugIdx    = {};
+const _cotSugItems  = {};
+
+function cotSugInput(inputId, dropId, val) {
+  clearTimeout(_cotSugTimers[inputId]);
+  const drop = document.getElementById(dropId);
+  if (!val || val.length < 2 || /^-?\d+[.,]/.test(val)) { drop.style.display='none'; return; }
+  _cotSugTimers[inputId] = setTimeout(() => _cotSugBuscar(inputId, dropId, val), 300);
+}
+
+async function _cotSugBuscar(inputId, dropId, q) {
+  const upper = q.toUpperCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  const local = [];
+  for (const [key, coords] of Object.entries(CIDADES_BR)) {
+    const norm = key.normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+    const [cidade, uf] = norm.split('|');
+    if (cidade && cidade.includes(upper)) {
+      const [cidadeOrig] = key.split('|');
+      local.push({ nome:`${cidadeOrig}/${uf}`, lat:coords[0], lon:coords[1] });
+    }
+    if (local.length >= 6) break;
+  }
+
+  // Nominatim para complementar
+  let nominatim = [];
+  try {
+    const r = await fetch(
+      `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(q+' Brasil')}&limit=5&countrycodes=br`,
+      { headers:{'Accept-Language':'pt-BR'} }
+    );
+    const data = await r.json();
+    nominatim = data
+      .filter(d => ['city','town','village','administrative','municipality'].includes(d.type))
+      .map(d => {
+        const parts = d.display_name.split(',');
+        const cidade = parts[0].trim().toUpperCase();
+        const ufMatch = d.display_name.match(/\b([A-Z]{2})\b/);
+        const uf = ufMatch ? ufMatch[1] : '';
+        return { nome: uf ? `${cidade}/${uf}` : cidade, lat: parseFloat(d.lat), lon: parseFloat(d.lon) };
+      });
+  } catch {}
+
+  const todos = [...local];
+  nominatim.forEach(n => { if (!todos.some(l => l.nome === n.nome)) todos.push(n); });
+  _cotSugItems[inputId] = todos.slice(0, 8);
+  _cotSugIdx[inputId]   = -1;
+  _cotSugRender(inputId, dropId);
+}
+
+function _cotSugRender(inputId, dropId) {
+  const drop  = document.getElementById(dropId);
+  const items = _cotSugItems[inputId] || [];
+  if (!items.length) { drop.style.display='none'; return; }
+  drop.style.display = 'block';
+  drop.innerHTML = items.map((item, i) => `
+    <div style="padding:8px 12px;cursor:pointer;font-size:13px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px"
+      onmousedown="cotSugSelecionar('${inputId}','${dropId}',${i})"
+      onmouseover="this.style.background='var(--bg)'" onmouseout="this.style.background=''">
+      <span style="font-size:12px">📍</span>
+      <div>
+        <div style="font-weight:600">${item.nome}</div>
+        <div style="font-size:10px;color:var(--ink3)">${item.lat.toFixed(4)}, ${item.lon.toFixed(4)}</div>
+      </div>
+    </div>`).join('');
+}
+
+function cotSugKeydown(e, inputId, dropId) {
+  const items = _cotSugItems[inputId] || [];
+  if (!items.length) { if(e.key==='Enter') return; return; }
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    _cotSugIdx[inputId] = Math.min((_cotSugIdx[inputId]||0) + 1, items.length - 1);
+    _cotSugHighlight(inputId, dropId);
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    _cotSugIdx[inputId] = Math.max((_cotSugIdx[inputId]||0) - 1, -1);
+    _cotSugHighlight(inputId, dropId);
+  } else if (e.key === 'Enter' && (_cotSugIdx[inputId]||0) >= 0) {
+    e.preventDefault();
+    cotSugSelecionar(inputId, dropId, _cotSugIdx[inputId]);
+  } else if (e.key === 'Escape') {
+    document.getElementById(dropId).style.display = 'none';
+  }
+}
+
+function _cotSugHighlight(inputId, dropId) {
+  const drop  = document.getElementById(dropId);
+  const divs  = drop.querySelectorAll('div[onmousedown]');
+  const idx   = _cotSugIdx[inputId] || 0;
+  divs.forEach((d,i) => d.style.background = i===idx ? 'var(--bg)' : '');
+  const item = (_cotSugItems[inputId]||[])[idx];
+  if (item) document.getElementById(inputId).value = item.nome;
+}
+
+function cotSugSelecionar(inputId, dropId, i) {
+  const item = (_cotSugItems[inputId]||[])[i];
+  if (!item) return;
+  document.getElementById(inputId).value = item.nome;
+  document.getElementById(dropId).style.display = 'none';
+  _cotSugItems[inputId] = [];
+}
+
+// Fechar sugestões da cotação ao clicar fora
+document.addEventListener('click', function(e) {
+  ['cot-orig-sug','cot-dest-sug'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el && !e.target.closest('#cot-orig') && !e.target.closest('#'+id) &&
+        !e.target.closest('#cot-dest') && !e.target.closest('#'+id)) {
+      el.style.display = 'none';
+    }
+  });
+});
+
+
+
+// ─── XML CT-e: UPLOAD, PARSER E CRUZAMENTO COM RELATÓRIO ────────────────────
+// ─── XML CT-e: CRUZAMENTO COM RELATÓRIO ─────────────────────────────────────
+
+let _xmlDados  = [];   // CT-es parseados dos XMLs
+let _xmlXlsDados = []; // registros do relatório XLS
+
+// ── Upload / Drop ─────────────────────────────────────────────────────────────
+function xmlOnDrop(e) {
+  e.preventDefault();
+  document.getElementById('xml-upload-area').classList.remove('dragover');
+  const files = [...e.dataTransfer.files].filter(f => f.name.toLowerCase().endsWith('.xml'));
+  if (files.length) xmlProcessarArquivos(files);
+}
+function xmlOnFileSelect(e) {
+  const files = [...e.target.files];
+  if (files.length) xmlProcessarArquivos(files);
+  e.target.value = '';
+}
+function xmlProcessarTexto() {
+  const txt = document.getElementById('xml-texto').value.trim();
+  if (!txt) { alert('Cole o XML primeiro.'); return; }
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(txt, 'application/xml');
+  if (doc.querySelector('parsererror')) {
+    document.getElementById('xml-resultado').innerHTML =
+      '<div class="alerta err"><div class="alerta-icon">❌</div><div><b>XML inválido.</b> Verifique se o conteúdo está completo.</div></div>';
+    return;
+  }
+  xmlProcessarArquivos([{ _doc: doc, name: 'XML colado' }]);
+}
+
+// ── XLS (relatório CTRC para cruzamento) ────────────────────────────────────
+function xmlXlsOnDrop(e) {
+  e.preventDefault();
+  document.getElementById('xml-xls-area').classList.remove('dragover');
+  const f = e.dataTransfer.files[0];
+  if (f) xmlCarregarXls(f);
+}
+function xmlXlsOnFileSelect(e) {
+  const f = e.target.files[0];
+  if (f) xmlCarregarXls(f);
+  e.target.value = '';
+}
+
+async function xmlCarregarXls(file) {
+  const statusEl = document.getElementById('xml-xls-status');
+  statusEl.textContent = '⏳ Lendo relatório...';
+  try {
+    if (typeof XLSX === 'undefined') {
+      await new Promise((res, rej) => {
+        const s = document.createElement('script');
+        s.src = 'https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js';
+        s.onload = res; s.onerror = rej;
+        document.head.appendChild(s);
+      });
+    }
+    const buf = await file.arrayBuffer();
+    const wb  = XLSX.read(buf, { type: 'array' });
+    const ws  = wb.Sheets[wb.SheetNames[0]];
+    const rows = XLSX.utils.sheet_to_json(ws, { header: 1, defval: '' });
+
+    // Detectar cabeçalho
+    let hIdx = -1;
+    for (let i = 0; i < Math.min(5, rows.length); i++) {
+      if (rows[i].some(c => String(c).includes('nr_ctrc'))) { hIdx = i; break; }
+    }
+    if (hIdx === -1) { statusEl.textContent = '⚠ Formato não reconhecido'; return; }
+
+    const headers = rows[hIdx].map(h => String(h).trim().toLowerCase());
+    const idx = {
+      ctrc:    headers.indexOf('nr_ctrc'),
+      eixo:    headers.indexOf('nr_eixo'),
+      peso:    headers.indexOf('vl_peso_kg'),
+      km:      headers.indexOf('vl_km_rodado'),
+      produto: headers.indexOf('nm_produto'),
+      orig:    headers.indexOf('nm_cidade_origem'),
+      ufOrig:  headers.indexOf('ds_uf_origem'),
+      dest:    headers.indexOf('nm_cidade_destino'),
+      ufDest:  headers.indexOf('ds_uf_destino'),
+      tarMot:  headers.indexOf('vl_tarifa_motorista'),
+      tarEmp:  headers.indexOf('vl_tarifa_empresa'),
+      prDif:   headers.indexOf('pr_dif_frete'),
+      data:    headers.indexOf('dt_emissao'),
+      agencia: headers.indexOf('nm_agencia'),
+      emb:     headers.indexOf('nr_embarque'),
+    };
+
+    _xmlXlsDados = rows.slice(hIdx + 1)
+      .filter(r => r[idx.ctrc])
+      .map(r => ({
+        ctrc:    String(r[idx.ctrc] || '').trim(),
+        eixo:    parseFloat(r[idx.eixo]) || 0,
+        peso:    parseFloat(r[idx.peso]) || 0,
+        km:      r[idx.km] !== '' ? parseFloat(r[idx.km]) || null : null,
+        produto: String(r[idx.produto] || '').trim(),
+        orig:    String(r[idx.orig] || '').trim(),
+        ufOrig:  String(r[idx.ufOrig] || '').trim(),
+        dest:    String(r[idx.dest] || '').trim(),
+        ufDest:  String(r[idx.ufDest] || '').trim(),
+        tarMot:  parseFloat(r[idx.tarMot]) || 0,
+        tarEmp:  parseFloat(r[idx.tarEmp]) || 0,
+        prDif:   parseFloat(r[idx.prDif]) || 0,
+        data:    String(r[idx.data] || '').trim(),
+        agencia: String(r[idx.agencia] || '').trim(),
+        emb:     String(r[idx.emb] || '').trim(),
+      }));
+
+    statusEl.textContent = `✓ ${file.name} — ${_xmlXlsDados.length} registros carregados`;
+    statusEl.style.color = 'var(--green)';
+
+    // Se já tem XMLs, reprocessar com cruzamento
+    if (_xmlDados.length > 0) xmlRenderResultados();
+
+  } catch(e) {
+    statusEl.textContent = `⚠ Erro: ${e.message}`;
+  }
+}
+
+// ── Parser XML ────────────────────────────────────────────────────────────────
+function xmlGet(doc, ...tags) {
+  for (const tag of tags) {
+    const els = doc.getElementsByTagName(tag);
+    if (els.length) return els[0].textContent?.trim() || null;
+  }
+  return null;
+}
+
+function xmlParseCTe(doc, nomeArquivo) {
+  const d = { _fonte: nomeArquivo };
+
+  // Identificação
+  d.chave   = xmlGet(doc, 'chCTe');
+  d.nr_ctrc = xmlGet(doc, 'nCT');
+  d.serie   = xmlGet(doc, 'serie');
+  d.dt_emiss = (xmlGet(doc, 'dhEmi', 'dEmi') || '').split('T')[0];
+
+  // ── Rota real: expedidor → recebedor (quando existirem) ──────────────────────
+  // Regra: <exped> = onde a carga SAI fisicamente (pode ser diferente do remetente)
+  //        <receb> = onde a carga CHEGA fisicamente (pode ser diferente do destinatário)
+  // Se não houver exped/receb, usa xMunIni/xMunFim do IDE (campos obrigatórios)
+
+  function xmlGetEndereco(el) {
+    // Retorna { logradouro, numero, bairro, municipio, uf, cep }
+    if (!el) return null;
+    const xLgr   = el.getElementsByTagName('xLgr')[0]?.textContent?.trim()    || '';
+    const nro    = el.getElementsByTagName('nro')[0]?.textContent?.trim()      || '';
+    const xBairro= el.getElementsByTagName('xBairro')[0]?.textContent?.trim()  || '';
+    const xMun   = el.getElementsByTagName('xMun')[0]?.textContent?.trim()     || '';
+    const uf     = el.getElementsByTagName('UF')[0]?.textContent?.trim()       || '';
+    const cep    = el.getElementsByTagName('CEP')[0]?.textContent?.trim()      || '';
+    const end    = [xLgr, nro].filter(Boolean).join(', ').trim();
+    return { end, bairro: xBairro, municipio: xMun, uf, cep,
+             endCompleto: [end, xBairro].filter(Boolean).join(', ') };
+  }
+
+  const expedEl = doc.getElementsByTagName('exped')[0] || null;
+  const recebEl = doc.getElementsByTagName('receb')[0] || null;
+
+  // Endereços de coleta e entrega
+  d._endOrig = xmlGetEndereco(
+    expedEl?.getElementsByTagName('enderExped')[0] ||
+    doc.getElementsByTagName('rem')[0]?.getElementsByTagName('enderReme')[0]
+  );
+  // Recebedor: usa <receb> se existir, senão <dest> (destinatário fiscal)
+  const destEl2 = doc.getElementsByTagName('dest')[0] || null;
+  d._endDest = xmlGetEndereco(
+    recebEl?.getElementsByTagName('enderReceb')[0] ||
+    destEl2?.getElementsByTagName('enderDest')[0]
+  );
+  // Se recebedor existe, usa cidade/UF dele; senão usa destino fiscal (xMunFim)
+  // Limpa nomes com caracteres estranhos (ex: "SAO PAULO.." → "SAO PAULO")
+  function limparNomeCidade(s) {
+    return (s || '').replace(/[^A-ZÁÉÍÓÚÃÕÂÊÎÔÛÇa-záéíóúãõâêîôûç\s\-]/g, '').trim();
+  }
+
+  // Nomes para exibição
+  d.expedidor   = expedEl?.getElementsByTagName('xNome')[0]?.textContent?.trim() || null;
+  d.recebedor   = recebEl?.getElementsByTagName('xNome')[0]?.textContent?.trim() || null;
+  d.remetente   = doc.getElementsByTagName('rem')[0]?.getElementsByTagName('xNome')[0]?.textContent?.trim() || null;
+  d.destinatario= doc.getElementsByTagName('dest')[0]?.getElementsByTagName('xNome')[0]?.textContent?.trim() || null;
+
+  // Cidade/UF de origem = expedidor se existir, senão IDE
+  d.cidade_origem = d._endOrig?.municipio || xmlGet(doc, 'xMunIni') || null;
+  d.uf_origem     = d._endOrig?.uf        || xmlGet(doc, 'UFIni')   || null;
+  d.cidade_destino = limparNomeCidade(d._endDest?.municipio || xmlGet(doc, 'xMunFim') || '');
+  d.uf_destino     = d._endDest?.uf || xmlGet(doc, 'UFFim') || null;
+  d.cidade_origem  = limparNomeCidade(d.cidade_origem || '');
+
+  // KM declarado e Placa — ObsCont (xCampo pode vir com ou sem namespace)
+  let kmObs = null;
+  const obsConts = [...doc.getElementsByTagName('ObsCont')];
+  obsConts.forEach(o => {
+    // getAttribute funciona para atributos sem namespace; para namespaced usar getAttributeNS
+    const campo = o.getAttribute('xCampo') || o.getAttributeNS(null,'xCampo') || '';
+    const texto = (o.getElementsByTagName('xTexto')[0]?.textContent || '').trim();
+    if (/KM\s*RODADO/i.test(campo)) {
+      const v = parseFloat(texto.replace(/[^\d.,]/g,'').replace(',','.'));
+      if (v > 0) kmObs = v;
+    }
+    // Placa também vem aqui em alguns CT-es
+    if (/PLACA/i.test(campo) && texto && !d.placa) {
+      d.placa = texto;
+    }
+  });
+  d.km_rota = kmObs || parseFloat(xmlGet(doc, 'vKM', 'dist') || '0') || null;
+
+  // Veículo / eixos — tpVeic no modal rodoviário
+  const tpVeic = xmlGet(doc, 'tpVeic');
+  const TPVEIC_EIXO = {'00':2,'01':2,'02':3,'03':4,'04':5,'05':6,'06':7,'07':7,'08':9,'09':6,'10':6,'11':9,'12':9,'13':9,'14':9};
+  d.eixo  = tpVeic ? (TPVEIC_EIXO[tpVeic] || null) : null;
+  // Placa — ObsCont "PLACA" ou campo direto
+  d.placa = xmlGet(doc, 'placa');
+  obsConts.forEach(o => {
+    if (/PLACA/i.test(o.getAttribute('xCampo') || '')) {
+      d.placa = o.getElementsByTagName('xTexto')[0]?.textContent?.trim() || d.placa;
+    }
+  });
+  d.ciot  = xmlGet(doc, 'nCIOT');
+  d.rntrc = xmlGet(doc, 'RNTRC');
+
+  // Peso (qCarga pode vir em ton ou kg)
+  const qCarga = parseFloat(xmlGet(doc, 'qCarga') || '0');
+  d.peso_kg = qCarga > 0 ? (qCarga < 500 ? qCarga * 1000 : qCarga) : null;
+
+  // Produto — tenta xProd das NF-es vinculadas, senão componente do frete
+  const xProdList = [...doc.getElementsByTagName('xProd')].map(e => e.textContent?.trim()).filter(Boolean);
+  d.produto = xProdList[0] || null;
+  d.unidade = xmlGet(doc, 'uCom', 'uMed') || '';
+
+  // NF-es vinculadas
+  d.nfes = [...doc.getElementsByTagName('chNFe')].map(e => e.textContent?.trim()).filter(Boolean);
+
+  // Valores
+  d.vTPrest = parseFloat(xmlGet(doc, 'vTPrest') || '0') || null;
+  d.vRec    = parseFloat(xmlGet(doc, 'vRec')    || '0') || null;
+
+  // Tarifa por tonelada (se disponível nos componentes)
+  const comps = [...doc.getElementsByTagName('Comp')];
+  comps.forEach(c => {
+    const nome = (c.getElementsByTagName('xNome')[0]?.textContent || '').toUpperCase();
+    const val  = parseFloat(c.getElementsByTagName('vComp')[0]?.textContent || '0');
+    if (nome.includes('FRETE PESO')) d.vFretePeso = val;
+  });
+
+  return d;
+}
+
+// ── Processar arquivos XML ────────────────────────────────────────────────────
+async function xmlProcessarArquivos(files) {
+  const res = document.getElementById('xml-resultado');
+  res.innerHTML = '<div style="text-align:center;padding:24px;color:var(--ink3)">⏳ Lendo XMLs...</div>';
+
+  _xmlDados = [];
+  for (const file of files) {
+    try {
+      let doc = file._doc; // já parseado (veio do textarea)
+      if (!doc) {
+        const txt = await file.text();
+        const parser = new DOMParser();
+        doc = parser.parseFromString(txt, 'application/xml');
+        if (doc.querySelector('parsererror')) throw new Error('XML mal formado');
+      }
+      const d = xmlParseCTe(doc, file.name);
+      _xmlDados.push(d);
+    } catch(e) {
+      _xmlDados.push({ _fonte: file.name, _erro: e.message });
+    }
+  }
+
+  await xmlRenderResultados();
+}
+
+// ── Render principal ──────────────────────────────────────────────────────────
+async function xmlRenderResultados() {
+  const res = document.getElementById('xml-resultado');
+  const total = _xmlDados.filter(d => !d._erro).length;
+  const erros = _xmlDados.filter(d => d._erro).length;
+  const temXls = _xmlXlsDados.length > 0;
+
+  res.innerHTML = `<div style="text-align:center;padding:24px;color:var(--ink3)">
+    ⏳ Processando ${total} CT-e${total>1?'s':''}${temXls?' + cruzamento com relatório':''}...
+  </div>`;
+
+  // Processar cada CT-e: KM via geocoding se necessário + cruzamento XLS
+  const resultados = [];
+  for (const d of _xmlDados) {
+    if (d._erro) { resultados.push(d); continue; }
+
+    const r = { ...d };
+
+    // ── Cruzamento com relatório XLS ─────────────────────────────────────────
+    if (temXls && d.nr_ctrc) {
+      const xlsRow = _xmlXlsDados.find(x => String(x.ctrc).trim() === String(d.nr_ctrc).trim());
+      if (xlsRow) {
+        r._xlsMatch = true;
+
+        // EIXO: relatório prevalece sobre XML (mais confiável para cálculo ANTT)
+        if (xlsRow.eixo && xlsRow.eixo > 0) {
+          r.eixo      = xlsRow.eixo;
+          r._eixoFonte = 'relatório';
+        } else if (r.eixo) {
+          r._eixoFonte = 'xml';
+        }
+
+        // Peso: relatório prevalece (peso real transportado)
+        if (xlsRow.peso && xlsRow.peso > 0) r.peso_kg = xlsRow.peso;
+
+        // KM do relatório só como último recurso (vai tentar geocoding antes)
+        r._xlsKm = xlsRow.km || null;
+
+        // Produto: XML prevalece (mais preciso via NF-e)
+        if (!r.produto && xlsRow.produto) r.produto = xlsRow.produto;
+
+        // Tarifa paga: motorista primeiro, senão calcula da empresa
+        const tarMot = xlsRow.tarMot;
+        const tarEmp = xlsRow.tarEmp;
+        const prDif  = xlsRow.prDif;
+        r._tarifaXls = tarMot > 0 ? tarMot
+                     : tarEmp > 0 ? Math.round(tarEmp * (1 - prDif/100) * 100)/100
+                     : null;
+        // vRec do XML é o valor total — preservar
+        // para cálculo usaremos vRec (frete total) vs piso calculado
+
+        r._xlsData    = xlsRow.data;
+        r._xlsAgencia = xlsRow.agencia;
+        r._xlsEmb     = xlsRow.emb;
+      } else {
+        // CT-e não encontrado no relatório — aviso
+        r._xlsSemMatch = true;
+        r._eixoFonte = r.eixo ? 'xml' : null;
+      }
+    } else {
+      r._eixoFonte = r.eixo ? 'xml' : null;
+    }
+
+    // Se valor do CT-e é total (vTPrest), calcula tarifa/t
+    if (!r.vRec && r.vTPrest && r.peso_kg) {
+      r.vRec = r.vTPrest; // usa total como frete
+    }
+
+    // ── KM: hierarquia clara de fontes ──────────────────────────────────────────
+    // 1. ObsCont "KM RODADO" do XML  → sempre prevalece (valor operacional real)
+    // 2. KM do relatório XLS         → segunda opção
+    // 3. Geocoding endereço/CEP      → fallback quando não tem KM declarado
+    // 4. Geocoding município         → último recurso
+
+    // Prioridade 1: KM do XML
+    r._km_declarado = r.km_rota || null;
+    r._kmSrc = r.km_rota ? 'xml' : null;
+
+    // Prioridade 2: KM do relatório XLS (se XML não tem)
+    if (!r.km_rota && r._xlsKm) {
+      r.km_rota = r._xlsKm;
+      r._km_declarado = r._xlsKm;
+      r._kmSrc = 'relatorio';
+    }
+
+    // Prioridade 3 e 4: geocoding (APENAS se não tem KM de nenhuma fonte)
+    if (!r.km_rota && r.cidade_origem && r.cidade_destino) {
+      try {
+        const endOrig = r._endOrig?.endCompleto || '';
+        const endDest = r._endDest?.endCompleto || '';
+        const cepOrig = r._endOrig?.cep || '';
+        const cepDest = r._endDest?.cep || '';
+
+        let g1 = await geocode(r.cidade_origem,  r.uf_origem  || '', endOrig, cepOrig);
+        let g2 = await geocode(r.cidade_destino, r.uf_destino || '', endDest, cepDest);
+        if (!g1) g1 = await geocode(r.cidade_origem,  r.uf_origem  || '');
+        if (!g2) g2 = await geocode(r.cidade_destino, r.uf_destino || '');
+
+        if (g1 && g2) {
+          const kmOSRM = await rotaOSRM(g1.lat, g1.lon, g2.lat, g2.lon);
+          r.km_rota = kmOSRM || haversine(g1.lat, g1.lon, g2.lat, g2.lon);
+          r._kmSrc  = kmOSRM ? 'osrm' : 'haversine';
+          const srcLabel = s => s==='end'?'endereço':s==='cep'?'CEP':'município';
+          r._g1prec = srcLabel(g1.src);
+          r._g2prec = srcLabel(g2.src);
+        }
+      } catch(e) {
+        console.warn('[xml geocode]', e);
+      }
+    }
+
+    // Classificar produto
+    r.classif = classifProduto(r.produto || '', r.unidade || '');
+
+    // Calcular piso (frete total do CT-e vs piso calculado pelo eixo+km+tipo)
+    if (r.km_rota && r.eixo) {
+      const calc = calcPiso(r.classif.tipo, r.eixo, r.km_rota);
+      r.piso   = calc.piso;
+      r.eixoEf = calc.eixoEf;
+      // Frete real = vRec do CT-e (valor total do frete motorista)
+      const freteReal = r.vRec || 0;
+      if (freteReal > 0) {
+        r.status = freteReal >= r.piso ? 'ok' : 'abaixo';
+        r.diff   = Math.round((freteReal - r.piso) * 100) / 100;
+        r.pct    = r.piso > 0 ? (r.diff / r.piso * 100).toFixed(1) : '0';
+      } else {
+        r.status = 'semtarifa';
+      }
+    } else if (!r.eixo) {
+      r.status = 'semeixo';
+    } else {
+      r.status = 'semkm';
+    }
+
+    resultados.push(r);
+  }
+
+  // ── Cards de resumo ──────────────────────────────────────────────────────
+  const validos   = resultados.filter(r => !r._erro);
+  const nOk       = validos.filter(r => r.status === 'ok').length;
+  const nAbaixo   = validos.filter(r => r.status === 'abaixo').length;
+  const nSemKm    = validos.filter(r => r.status === 'semkm' || r.status === 'semeixo').length;
+  const nCruzados = validos.filter(r => r._xlsMatch).length;
+  const totalFrete = validos.reduce((s,r) => s + (r.vRec || 0), 0);
+  const totalPiso  = validos.reduce((s,r) => s + (r.piso  || 0), 0);
+  const totalDiff  = totalFrete - totalPiso;
+
+  let html = '';
+
+  if (erros > 0) html += `<div class="alerta warn" style="margin-bottom:10px">
+    <div class="alerta-icon">⚠️</div>
+    <div>${erros} arquivo(s) com erro foram ignorados.</div>
+  </div>`;
+
+  // Cards
+  html += `<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:16px">
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center">
+      <div style="font-size:26px;font-weight:800;color:var(--ink)">${validos.length}</div>
+      <div style="font-size:10px;color:var(--ink3);text-transform:uppercase;font-weight:700;margin-top:2px">CT-es</div>
+    </div>
+    ${temXls ? `<div style="background:#e0f2fe;border:1px solid #bae6fd;border-radius:12px;padding:14px;text-align:center">
+      <div style="font-size:26px;font-weight:800;color:#0369a1">${nCruzados}</div>
+      <div style="font-size:10px;color:#0369a1;text-transform:uppercase;font-weight:700;margin-top:2px">Cruzados XLS</div>
+    </div>` : ''}
+    <div style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:12px;padding:14px;text-align:center">
+      <div style="font-size:26px;font-weight:800;color:#16a34a">${nOk}</div>
+      <div style="font-size:10px;color:#16a34a;text-transform:uppercase;font-weight:700;margin-top:2px">Acima do piso</div>
+    </div>
+    <div style="background:#fef2f2;border:1px solid #fecaca;border-radius:12px;padding:14px;text-align:center">
+      <div style="font-size:26px;font-weight:800;color:#dc2626">${nAbaixo}</div>
+      <div style="font-size:10px;color:#dc2626;text-transform:uppercase;font-weight:700;margin-top:2px">Abaixo do piso</div>
+    </div>
+    <div style="background:#fffbeb;border:1px solid #fde68a;border-radius:12px;padding:14px;text-align:center">
+      <div style="font-size:26px;font-weight:800;color:#d97706">${nSemKm}</div>
+      <div style="font-size:10px;color:#d97706;text-transform:uppercase;font-weight:700;margin-top:2px">Sem dados</div>
+    </div>
+    ${totalFrete > 0 ? `
+    <div style="background:var(--white);border:1px solid var(--border);border-radius:12px;padding:14px;text-align:center">
+      <div style="font-size:14px;font-weight:800;color:var(--ink)">${fmtR(totalFrete)}</div>
+      <div style="font-size:10px;color:var(--ink3);text-transform:uppercase;font-weight:700;margin-top:2px">Total frete</div>
+    </div>
+    <div style="background:var(--blue-bg);border:1px solid var(--blue-border);border-radius:12px;padding:14px;text-align:center">
+      <div style="font-size:14px;font-weight:800;color:var(--blue)">${fmtR(totalPiso)}</div>
+      <div style="font-size:10px;color:var(--blue);text-transform:uppercase;font-weight:700;margin-top:2px">Total piso ANTT</div>
+    </div>
+    <div style="background:${totalDiff<0?'#fef2f2':'#f0fdf4'};border:1px solid ${totalDiff<0?'#fecaca':'#bbf7d0'};border-radius:12px;padding:14px;text-align:center">
+      <div style="font-size:14px;font-weight:800;color:${totalDiff<0?'#dc2626':'#16a34a'}">${totalDiff>=0?'+':''}${fmtR(totalDiff)}</div>
+      <div style="font-size:10px;color:var(--ink3);text-transform:uppercase;font-weight:700;margin-top:2px">Diferença total</div>
+    </div>` : ''}
+  </div>`;
+
+  // ── XML único → resultado completo ───────────────────────────────────────
+  if (validos.length === 1 && !temXls) {
+    const d = validos[0];
+    const tonRef = d.peso_kg ? d.peso_kg / 1000 : null;
+    const tarifaPorTon = d.vRec && tonRef ? Math.round(d.vRec / tonRef * 100) / 100 : null;
+    const pisoTon      = d.piso && tonRef ? Math.round(d.piso  / tonRef * 100) / 100 : null;
+
+    const banner = `
+      <div style="background:var(--white);border:1px solid var(--border);border-radius:14px;padding:18px 22px;margin-bottom:14px">
+        <div style="display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap">
+          <div style="flex:1;min-width:180px">
+            <div style="font-size:10px;color:var(--ink3);text-transform:uppercase;font-weight:700;letter-spacing:.06em">CT-e nº</div>
+            <div style="font-size:22px;font-weight:800;color:var(--blue);font-family:'JetBrains Mono',monospace;line-height:1.2">${d.nr_ctrc || '—'}</div>
+            <div style="font-size:11px;color:var(--ink3);margin-top:2px">${d.dt_emiss || ''} · ${d._fonte}</div>
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:flex-start">
+            ${d.produto ? `<span style="background:var(--bg);padding:3px 9px;border-radius:8px;font-size:11px;font-weight:600">${d.produto}</span>` : ''}
+            <span style="background:var(--blue-bg);color:var(--blue);padding:3px 9px;border-radius:8px;font-size:11px;font-weight:700">${d.classif?.label || '—'}</span>
+            ${d.eixo ? `<span style="background:var(--bg);padding:3px 9px;border-radius:8px;font-size:11px">${d.eixo} eixos</span>` : ''}
+            ${d.placa ? `<span style="background:var(--bg);padding:3px 9px;border-radius:8px;font-size:11px;font-family:monospace">${d.placa}</span>` : ''}
+            ${d.ciot ? `<span style="background:var(--bg);padding:3px 9px;border-radius:8px;font-size:11px;color:var(--ink3)">CIOT ${d.ciot}</span>` : ''}
+          </div>
+        </div>
+        ${d.expedidor ? `
+        <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:11px">
+          <div>
+            <div style="color:var(--ink3);font-weight:700;text-transform:uppercase;font-size:10px;margin-bottom:2px">📦 Coleta (Expedidor)</div>
+            <div style="font-weight:600">${d.expedidor}</div>
+            <div style="color:var(--ink3)">${d._endOrig?.endCompleto ? d._endOrig.endCompleto + ' · ' : ''}${d.cidade_origem}/${d.uf_origem}</div>
+          </div>
+          <div>
+            <div style="color:var(--ink3);font-weight:700;text-transform:uppercase;font-size:10px;margin-bottom:2px">🏭 Entrega (Recebedor)</div>
+            <div style="font-weight:600">${d.recebedor || d.destinatario || '—'}</div>
+            <div style="color:var(--ink3)">${d._endDest?.endCompleto ? d._endDest.endCompleto + ' · ' : ''}${d.cidade_destino}/${d.uf_destino}</div>
+          </div>
+        </div>` : ''}
+        ${tarifaPorTon ? `
+        <div style="margin-top:10px;padding:10px 14px;background:var(--bg);border-radius:8px;display:flex;gap:20px;flex-wrap:wrap;font-size:12px;font-family:'JetBrains Mono',monospace">
+          <div><span style="color:var(--ink3)">Frete total: </span><b>${fmtR(d.vRec)}</b></div>
+          <div><span style="color:var(--ink3)">Tarifa paga: </span><b style="color:var(--blue)">${fmtR(tarifaPorTon)}/t</b></div>
+          ${pisoTon ? `<div><span style="color:var(--ink3)">Tarifa mín. ANTT: </span><b style="color:var(--green)">${fmtR(pisoTon)}/t</b></div>` : ''}
+          <div><span style="color:var(--ink3)">Peso: </span><b>${(d.peso_kg/1000).toLocaleString('pt-BR',{maximumFractionDigits:3})}t</b></div>
+        </div>` : ''}
+      </div>`;
+
+    const lote = {
+      nr_lote: d.nr_ctrc, cidade_origem: d.cidade_origem, uf_origem: d.uf_origem,
+      cidade_destino: d.cidade_destino, uf_destino: d.uf_destino,
+      produto: d.produto, unidade: d.unidade, qt_total_kg: d.peso_kg,
+      tarifa_motorista: d.vRec, tarifa_empresa: null,
+      modo_calculo_motorista: 'total', modo_calculo_empresa: 'desconhecido',
+      modo_heuristico: false, situacao: 'CT-e XML', empresa: d._fonte,
+    };
+    res.innerHTML = html + banner + renderResultado(lote, { km: d.km_rota, source: d._kmSrc || 'xml' });
+    return;
+  }
+
+  // ── Múltiplos CT-es → tabela ─────────────────────────────────────────────
+  const kmSrcIcon = src => ({'endereco':'📍','misto':'🟡','municipio':'🟠','osrm':'🟢','haversine':'🟡','relatorio':'🔵','declarado':'⚪','xml':'⚪'}[src]||'⚫');
+  const kmSrcTitle = src => ({'endereco':'Calculado pelo endereço (expedidor → recebedor)','misto':'Endereço parcial + município','municipio':'Calculado pelo município (estimado)','osrm':'Rota OSRM','haversine':'Estimado haversine','relatorio':'Do relatório','declarado':'KM declarado pelo agente (geocoding falhou)','xml':'KM declarado no XML'}[src]||'');
+
+  // Número de colunas: fixo independente de temXls para o colspan do erro
+  const nCols = temXls ? 14 : 13;
+
+  html += `
+  <div style="background:var(--white);border-radius:16px;border:1px solid var(--border);overflow:hidden;margin-top:8px;box-shadow:0 2px 12px rgba(37,99,235,.06)">
+    <div style="padding:16px 20px;background:#eef2ff;border-bottom:2px solid #c5d0fa;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <span style="font-size:14px;font-weight:800;color:#1e3a8a">${validos.length} CT-e${validos.length>1?'s':''} validados</span>
+        ${temXls ? `<span style="background:#dbeafe;color:#1d4ed8;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700">${nCruzados} cruzados com relatório</span>` : ''}
+      </div>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+        <span style="font-size:10px;color:#3b5bdb;background:#e0e7ff;padding:3px 10px;border-radius:20px">
+          📍 Endereço &nbsp;·&nbsp; 🟡 Misto/Estimado &nbsp;·&nbsp; 🟠 Município &nbsp;·&nbsp; ⚪ Declarado &nbsp;·&nbsp; 🔵 Relatório
+        </span>
+        <button onclick="xmlExportarExcel()" style="
+          padding:8px 18px;background:#1e3a8a;color:white;border:none;border-radius:8px;
+          font-family:'Figtree',sans-serif;font-size:12px;font-weight:700;cursor:pointer;
+          display:flex;align-items:center;gap:6px;transition:background .15s">
+          ⬇ Exportar Excel
+        </button>
+      </div>
+    </div>
+    <div style="overflow-x:auto">
+    <table class="xml-table">
+      <thead><tr>
+        <th style="min-width:90px">CT-e</th>
+        <th style="min-width:80px">Data</th>
+        ${temXls ? '<th style="min-width:90px">Agência</th>' : ''}
+        <th style="min-width:120px">Produto · Tipo</th>
+        <th style="min-width:180px">Rota / Expedidor</th>
+        <th style="min-width:60px;text-align:center">Eixos</th>
+        <th style="min-width:80px;text-align:right">Placa</th>
+        <th style="min-width:70px;text-align:right">KM</th>
+        <th style="min-width:80px;text-align:right">Peso</th>
+        <th style="min-width:130px;text-align:right">Tar. R$/t</th>
+        <th style="min-width:120px;text-align:right">Frete total</th>
+        <th style="min-width:120px;text-align:right;color:#3b5bdb">Piso ANTT</th>
+        <th style="min-width:120px;text-align:right">Diferença</th>
+        <th style="min-width:90px;text-align:center">Status</th>
+      </tr></thead>
+      <tbody>`;
+
+  // Guardar resultados para exportação
+  window._xmlResultados = resultados;
+  window._xmlTemXls     = temXls;
+
+  resultados.forEach(r => {
+    if (r._erro) {
+      html += `<tr><td colspan="${nCols}" style="color:var(--red);font-size:11px;padding:10px 12px">❌ ${r._fonte}: ${r._erro}</td></tr>`;
+      return;
+    }
+
+    const cor    = r.status==='ok'?'var(--green)':r.status==='abaixo'?'var(--red)':'var(--ink3)';
+    const rowBg  = r.status==='abaixo' ? 'background:#fff8f8' : '';
+    const badge  = r.status==='ok'        ? '<span class="badge-ok">✓ OK</span>'
+                 : r.status==='abaixo'    ? '<span class="badge-err">✗ Abaixo</span>'
+                 : r.status==='semtarifa' ? '<span class="badge-neutral">Sem tarifa</span>'
+                 : r.status==='semeixo'   ? '<span class="badge-warn">Sem eixo</span>'
+                 : '<span class="badge-warn">Sem KM</span>';
+
+    // Tarifa R$/t: frete total ÷ peso
+    const tonRef      = r.peso_kg ? r.peso_kg / 1000 : null;
+    const tarifaTon   = r.vRec && tonRef ? Math.round(r.vRec / tonRef * 100) / 100 : null;
+    const pisoTon     = r.piso && tonRef ? Math.round(r.piso / tonRef * 100) / 100 : null;
+    const fmtTon = v => v != null ? v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2})+'/t' : '—';
+    const tarifaTonStr = tarifaTon ? fmtTon(tarifaTon) : '—';
+    const pisoTonStr   = pisoTon   ? fmtTon(pisoTon)   : '—';
+
+    // Rota (expedidor → recebedor quando diferente do remetente)
+    const temExped = r.expedidor && r.expedidor !== r.remetente;
+    const rotaLabel = `${r.cidade_origem||'?'}/${r.uf_origem||'?'} → ${r.cidade_destino||'?'}/${r.uf_destino||'?'}`;
+    const expedLabel = temExped
+      ? `<span style="display:block;font-size:9px;color:var(--ink3);margin-top:1px" title="${r.expedidor||''}">exp: ${(r.expedidor||'').substring(0,16)}</span>`
+      : '';
+
+    // Eixo com fonte
+    const eixoLabel = r.eixo
+      ? `${r.eixo}${r.eixoEf&&r.eixoEf!==r.eixo?'→'+r.eixoEf:''}<span style="font-size:8px;color:var(--ink3);display:block">${r._eixoFonte==='relatório'?'rel':'xml'}</span>`
+      : `<span style="color:var(--red);font-weight:700">—</span>`;
+
+    const semMatchBadge = r._xlsSemMatch
+      ? '<span style="font-size:8px;background:#fef3c7;color:#92400e;padding:1px 4px;border-radius:4px;display:block;margin-top:2px">sem cruzamento</span>'
+      : '';
+
+    html += `<tr style="${rowBg}">
+      <td class="xml-cte">
+        ${r.nr_ctrc || '—'}
+        ${r._xlsMatch ? '<span style="font-size:8px;background:#dbeafe;color:#1d4ed8;padding:2px 5px;border-radius:5px;margin-left:4px;font-weight:700">XLS</span>' : ''}
+        ${semMatchBadge}
+        ${r.nfes?.length ? `<span style="display:block;font-size:9px;color:var(--ink3);margin-top:2px">${r.nfes.length} NF-e vinculada${r.nfes.length>1?'s':''}</span>` : ''}
+      </td>
+      <td style="font-size:11px;color:var(--ink3);white-space:nowrap">${r._xlsData || r.dt_emiss || '—'}</td>
+      ${temXls ? `<td style="font-size:12px;font-weight:600">${r._xlsAgencia || '—'}</td>` : ''}
+      <td>
+        <span style="font-size:12px;font-weight:700;display:block;margin-bottom:3px">${r.produto||'—'}</span>
+        <span style="font-size:10px;background:#eff6ff;color:#2563eb;padding:2px 7px;border-radius:20px;font-weight:700">${r.classif?.label||'—'}</span>
+      </td>
+      <td>
+        <span style="font-size:12px;display:block;font-weight:500">${rotaLabel}</span>
+        ${expedLabel}
+      </td>
+      <td style="text-align:center">${eixoLabel}</td>
+      <td class="xml-mono xml-r">${r.placa||'—'}</td>
+      <td class="xml-mono xml-r" title="${kmSrcTitle(r._kmSrc)}">
+        <span style="font-weight:700;font-size:12px;display:block">
+          ${r.km_rota?r.km_rota.toLocaleString('pt-BR')+'km':'—'}
+          <span style="font-size:11px">${kmSrcIcon(r._kmSrc)}</span>
+        </span>
+        ${r._g1prec ? `<span style="display:block;font-size:9px;white-space:nowrap;margin-top:2px">
+          <span style="color:${r._geoExato?'#16a34a':r._geoMisto?'#d97706':'var(--ink3)'};font-weight:600">
+            ${r._g1prec} → ${r._g2prec}
+          </span>
+        </span>` : ''}
+        ${r._km_declarado && r.km_rota && r._km_declarado !== r.km_rota ? `
+          <span style="display:block;font-size:9px;color:var(--ink3);white-space:nowrap">dec: ${r._km_declarado.toLocaleString('pt-BR')}km</span>
+          ${Math.abs(r._km_divergencia) >= 5 ? `
+            <span style="display:block;font-size:9px;font-weight:700;color:${Math.abs(r._km_divergencia)>30?'#dc2626':r._km_divergencia>0?'#d97706':'#16a34a'}">
+              ${r._km_divergencia>0?'+':''}${r._km_divergencia}km (${r._km_pct_div}%)
+            </span>` : ''}
+        ` : ''}
+      </td>
+      <td class="xml-mono xml-r">${r.peso_kg?(r.peso_kg/1000).toLocaleString('pt-BR',{minimumFractionDigits:3,maximumFractionDigits:3})+'t':'—'}</td>
+      <td class="xml-mono xml-r">
+        <span style="font-weight:700;font-size:12px">${tarifaTonStr}</span>
+        ${pisoTonStr !== '—' ? `<span style="display:block;font-size:10px;color:#2563eb;margin-top:2px">mín: ${pisoTonStr}</span>` : ''}
+      </td>
+      <td class="xml-mono xml-r" style="font-weight:700">${r.vRec?fmtR(r.vRec):'—'}</td>
+      <td class="xml-mono xml-r" style="color:#2563eb">${r.piso?fmtR(r.piso):'—'}</td>
+      <td class="xml-r">
+        ${r.diff!=null
+          ? `<span style="color:${cor};font-weight:800;font-size:12px">${r.diff>=0?'+':''}${fmtR(r.diff)}</span>
+             <span style="display:block;font-size:10px;color:var(--ink3);margin-top:2px">(${r.pct}%)</span>`
+          : '<span style="color:var(--ink3)">—</span>'}
+      </td>
+      <td class="xml-c">${badge}</td>
+    </tr>`;
+  });
+
+  html += `</tbody></table></div></div>`;
+  res.innerHTML = html;
+}
+// ── Exportar Excel XML ────────────────────────────────────────────────────────
+async function xmlExportarExcel() {
+  const resultados = window._xmlResultados || [];
+  if (!resultados.length) return;
+
+  if (typeof XLSX === 'undefined') {
+    await new Promise((res, rej) => {
+      const s = document.createElement('script');
+      s.src = 'https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js';
+      s.onload = res; s.onerror = rej;
+      document.head.appendChild(s);
+    });
+  }
+
+  const headers = [
+    'CT-e', 'Data', 'Agência', 'Expedidor (coleta)', 'Recebedor (entrega)',
+    'Remetente', 'Destinatário',
+    'Origem (coleta)', 'UF Orig', 'Destino (entrega)', 'UF Dest',
+    'Produto', 'Tipo Carga', 'Eixos', 'Eixo Ref.', 'Fonte Eixo', 'Placa', 'CIOT',
+    'KM', 'Fonte KM', 'Peso (t)',
+    'Tarifa R$/t paga', 'Tarifa mín. ANTT R$/t',
+    'Frete total R$', 'Piso ANTT R$', 'Diferença R$', '% Diferença',
+    'NF-es vinculadas', 'Status'
+  ];
+
+  const rows = resultados
+    .filter(r => !r._erro)
+    .map(r => {
+      const tonRef    = r.peso_kg ? r.peso_kg / 1000 : null;
+      const tarifaTon = r.vRec && tonRef ? Math.round(r.vRec / tonRef * 100) / 100 : '';
+      const pisoTon   = r.piso && tonRef ? Math.round(r.piso / tonRef * 100) / 100 : '';
+      const statusLabel = r.status==='ok' ? 'Acima do piso'
+                        : r.status==='abaixo' ? 'Abaixo do piso'
+                        : r.status==='semtarifa' ? 'Sem tarifa'
+                        : r.status==='semeixo' ? 'Sem eixo'
+                        : 'Sem KM';
+      return [
+        r.nr_ctrc || '',
+        r._xlsData || r.dt_emiss || '',
+        r._xlsAgencia || '',
+        r.expedidor || '',
+        r.recebedor || '',
+        r.remetente || '',
+        r.destinatario || '',
+        r.cidade_origem || '', r.uf_origem || '',
+        r.cidade_destino || '', r.uf_destino || '',
+        r.produto || '',
+        r.classif?.label || '',
+        r.eixo || '',
+        r.eixoEf || '',
+        r._eixoFonte || '',
+        r.placa || '',
+        r.ciot || '',
+        r.km_rota || '',
+        r._kmSrc || '',
+        tonRef ? parseFloat(tonRef.toFixed(3)) : '',
+        tarifaTon,
+        pisoTon,
+        r.vRec || '',
+        r.piso || '',
+        r.diff != null ? parseFloat(r.diff.toFixed(2)) : '',
+        r.pct != null ? parseFloat(r.pct) : '',
+        (r.nfes || []).join('; '),
+        statusLabel,
+      ];
+    });
+
+  const wsData = [headers, ...rows];
+  const wb = XLSX.utils.book_new();
+  const ws = XLSX.utils.aoa_to_sheet(wsData);
+
+  ws['!cols'] = [
+    {wch:10},{wch:12},{wch:14},{wch:28},{wch:28},
+    {wch:24},{wch:24},
+    {wch:18},{wch:5},{wch:18},{wch:5},
+    {wch:16},{wch:14},{wch:6},{wch:7},{wch:8},{wch:10},{wch:16},
+    {wch:7},{wch:8},{wch:8},
+    {wch:14},{wch:16},
+    {wch:14},{wch:14},{wch:12},{wch:8},
+    {wch:46},{wch:14}
+  ];
+
+  XLSX.utils.book_append_sheet(wb, ws, 'Validação XML CT-e');
+  const data = new Date().toISOString().slice(0,10).replace(/-/g,'');
+  XLSX.writeFile(wb, `validacao_xml_cte_${data}.xlsx`);
+}
+
+
 </script>
+<script src="patch_v8.js"></script>
 </body>
 </html>
